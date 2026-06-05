@@ -156,11 +156,17 @@ const handleSubmit = async (e: React.FormEvent) => {
           <h2 className="text-3xl font-bold text-white mb-4">Manage Your Portfolio on the Go</h2>
           <p className="text-slate-400 mb-8">Download the Capital Hill Investment app. Track portfolio, place transactions, and connect with your advisor.</p>
           <div className="flex flex-wrap gap-4 justify-center">
-            {[{ store: 'App Store', sub: 'Download on the' }, { store: 'Google Play', sub: 'Get it on' }].map(btn => (
-              <div key={btn.store} className="bg-slate-800 border border-slate-700 hover:border-slate-500 text-white font-semibold px-7 py-3.5 rounded-xl transition-colors flex items-center gap-3 cursor-pointer">
-                <div className="text-left"><div className="text-xs text-slate-400">{btn.sub}</div><div className="font-bold">{btn.store}</div></div>
-              </div>
-            ))}
+<a
+  href="https://play.google.com/store/apps/details?id=com.capitalhillinvestmentapp.app&pcampaignid=web_share"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="bg-slate-800 border border-slate-700 hover:border-slate-500 text-white font-semibold px-7 py-3.5 rounded-xl transition-colors flex items-center gap-3"
+>
+  <div className="text-left">
+    <div className="text-xs text-slate-400">Get it on</div>
+    <div className="font-bold">Google Play</div>
+  </div>
+</a>
           </div>
         </div>
       </section>
