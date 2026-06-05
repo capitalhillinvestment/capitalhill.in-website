@@ -69,7 +69,9 @@ export default function Footer({ onNavigate }: FooterProps) {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs text-slate-500 text-center md:text-left">&copy; {new Date().getFullYear()} Capital Hill Investment. All rights reserved. | ARN. No. 302794</p>
             <div className="flex items-center gap-4 text-xs text-slate-500">
-              <a href="https://www.instagram.com/capitalhillinvestment"> className="hover:text-slate-300 transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-slate-300 transition-colors">
+  Privacy Policy
+</a>
               <span>|</span>
               <a href="#" className="hover:text-slate-300 transition-colors">Terms of Use</a>
               <span>|</span>
