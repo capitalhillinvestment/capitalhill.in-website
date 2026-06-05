@@ -43,7 +43,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
            <img
   src={logo}
   alt="Capital Hill Investment"
-  className="h-12 w-auto"
+  className="h-24 w-auto"
 />
         
             <div className="leading-none">
