@@ -7,10 +7,44 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
   const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    const response = await fetch(
+      "https://formspree.io/f/xqeoeebe",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          phone: form.phone,
+          service: form.service,
+          message: form.message,
+        }),
+      }
+    );
+
+    if (response.ok) {
+      setSubmitted(true);
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        service: "",
+        message: "",
+      });
+    } else {
+      alert("Unable to send message. Please try again.");
+    }
+  } catch (error) {
+    alert("Network error. Please try again.");
+  }
+};
 
   return (
     <div className="pt-16">
