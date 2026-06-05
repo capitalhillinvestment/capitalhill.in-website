@@ -36,7 +36,7 @@ export default function Home({ onNavigate }: HomeProps) {
           <div>
             <div className="badge mb-6"><ShieldCheck className="w-3.5 h-3.5" /> Investment Distribution & Financial Planning Services</div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-              Grow Your Wealth<span className="block text-emerald-400 mt-1">The Right Way</span>
+              Grow Your Wealth<span className="block text-emerald-400 mt-1">The Right Way With Confidence</span>
             </h1>
             <p className="text-slate-300 text-lg leading-relaxed mb-8 max-w-lg">Expert-guided investment solutions in Mutual Funds, PMS, AIF, and more. Start your wealth creation journey with India's trusted investment advisor.</p>
             <div className="flex flex-wrap gap-4">
