@@ -27,10 +27,10 @@ export default function Contact({ onNavigate: _onNavigate }: ContactProps) {
           <div className="lg:col-span-1 space-y-6">
             <div><h2 className="text-2xl font-bold text-slate-900 mb-2">Get in Touch</h2><p className="text-slate-500 text-sm">Reach out through any of these channels and we'll respond within 24 hours.</p></div>
             {[
-              { icon: Phone, title: 'Phone', lines: ['+91 11 4123 4567', '+91 98765 43210'], sub: 'Mon–Sat 9AM to 6PM' },
-              { icon: Mail, title: 'Email', lines: ['info@capitalhillinvestment.com'], sub: 'We reply within 24 hours' },
-              { icon: MapPin, title: 'Head Office', lines: ['101, Capital Tower, Connaught Place,', 'New Delhi – 110001'], sub: '' },
-              { icon: Clock, title: 'Business Hours', lines: ['Monday – Saturday: 9:00 AM – 6:00 PM'], sub: 'Sunday: Closed' },
+              { icon: Phone, title: 'Phone', lines: ['+91 9136125220], sub: 'Mon–Sat 9AM to 6PM' },
+              { icon: Mail, title: 'Email', lines: ['support@capitalhill.in'], sub: 'We reply within 24 hours' },
+              { icon: MapPin, title: 'Head Office', lines: ['B-114, Hill Road, Elco Market, Bandra West, Mumbai-400050'], sub: '' },
+              { icon: Clock, title: 'Business Hours', lines: ['Monday – Saturday: 11:30 AM – 6:00 PM'], sub: 'Sunday: Closed' },
             ].map(item => (
               <div key={item.title} className="card p-5 flex gap-4">
                 <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center shrink-0"><item.icon className="w-5 h-5 text-emerald-600" /></div>
