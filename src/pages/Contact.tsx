@@ -78,7 +78,7 @@ const handleSubmit = async (e: React.FormEvent) => {
             <div className="card p-5">
               <p className="font-semibold text-slate-900 text-sm mb-3">Branch Offices</p>
               <div className="grid grid-cols-2 gap-2">
-                {['Mumbai', 'Bangalore', 'Hyderabad', 'Chennai', 'Pune', 'Kolkata'].map(city => (
+                {['Mumbai'].map(city => (
                   <div key={city} className="flex items-center gap-2"><div className="w-1.5 h-1.5 bg-emerald-500 rounded-full" /><span className="text-sm text-slate-600">{city}</span></div>
                 ))}
               </div>
@@ -146,7 +146,7 @@ const handleSubmit = async (e: React.FormEvent) => {
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="bg-white rounded-2xl shadow-lg p-5 flex items-center gap-4">
             <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center"><MapPin className="w-6 h-6 text-emerald-600" /></div>
-            <div><p className="font-bold text-slate-900">Capital Hill Investment</p><p className="text-slate-500 text-sm">101, Capital Tower, Connaught Place, New Delhi</p></div>
+            <div><p className="font-bold text-slate-900">Capital Hill Investment</p><p className="text-slate-500 text-sm">B-114, Hill Road, Elco Market, Bandra West, Mumbai-400050</p></div>
           </div>
         </div>
       </section>
