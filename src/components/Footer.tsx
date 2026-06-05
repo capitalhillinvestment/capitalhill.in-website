@@ -50,9 +50,9 @@ export default function Footer({ onNavigate }: FooterProps) {
           <div>
             <h4 className="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Get In Touch</h4>
             <ul className="space-y-3">
-              <li className="flex items-start gap-3"><MapPin className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" /><span className="text-sm text-slate-400">101, Capital Tower, Connaught Place,<br />New Delhi – 110001</span></li>
-              <li className="flex items-center gap-3"><Phone className="w-4 h-4 text-emerald-400 shrink-0" /><a href="tel:+911141234567" className="text-sm text-slate-400 hover:text-emerald-400 transition-colors">+91 11 4123 4567</a></li>
-              <li className="flex items-center gap-3"><Mail className="w-4 h-4 text-emerald-400 shrink-0" /><a href="mailto:info@capitalhillinvestment.com" className="text-sm text-slate-400 hover:text-emerald-400 transition-colors">info@capitalhillinvestment.com</a></li>
+              <li className="flex items-start gap-3"><MapPin className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" /><span className="text-sm text-slate-400">B-114, Elco Market, Hill Road, Bandra West, Mumbai-400050.</span></li>
+              <li className="flex items-center gap-3"><Phone className="w-4 h-4 text-emerald-400 shrink-0" /><a href="tel:+911141234567" className="text-sm text-slate-400 hover:text-emerald-400 transition-colors">+91 91361 25220</a></li>
+              <li className="flex items-center gap-3"><Mail className="w-4 h-4 text-emerald-400 shrink-0" /><a href="mailto:support@capitalhill.in" className="text-sm text-slate-400 hover:text-emerald-400 transition-colors">support@capitalhill.in</a></li>
             </ul>
             <button className="btn-primary text-sm py-2.5 px-4 w-full mt-5">Download App</button>
           </div>
