@@ -34,7 +34,7 @@ export default function Home({ onNavigate }: HomeProps) {
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")` }} />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-20 md:py-28 grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <div className="badge mb-6"><ShieldCheck className="w-3.5 h-3.5" /> SEBI Registered Investment Advisor</div>
+            <div className="badge mb-6"><ShieldCheck className="w-3.5 h-3.5" /> Investment Distribution & Financial Planning Services</div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
               Grow Your Wealth<span className="block text-emerald-400 mt-1">The Right Way</span>
             </h1>
