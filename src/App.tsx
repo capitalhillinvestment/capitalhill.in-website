@@ -13,8 +13,25 @@ import IPO from './pages/IPO';
 import NFO from './pages/NFO';
 import Calculators from './pages/Calculators';
 import Contact from './pages/Contact';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import Disclaimer from './pages/Disclaimer';
+import TermsOfUse from './pages/TermsOfUse';
 
-type Page = 'home' | 'about' | 'why-invest' | 'investment-basics' | 'mutual-funds' | 'pms' | 'aif' | 'ipo' | 'nfo' | 'calculators' | 'contact';
+type Page =
+  | 'home'
+  | 'about'
+  | 'why-invest'
+  | 'investment-basics'
+  | 'mutual-funds'
+  | 'pms'
+  | 'aif'
+  | 'ipo'
+  | 'nfo'
+  | 'calculators'
+  | 'contact'
+  | 'privacy-policy'
+  | 'terms-of-use'
+  | 'disclaimer';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -33,6 +50,14 @@ function App() {
       case 'nfo': return <NFO onNavigate={navigate} />;
       case 'calculators': return <Calculators onNavigate={navigate} />;
       case 'contact': return <Contact onNavigate={navigate} />;
+        case 'privacy-policy':
+  return <PrivacyPolicy />;
+
+case 'terms-of-use':
+  return <TermsOfUse />;
+
+case 'disclaimer':
+  return <Disclaimer />;
       default: return <Home onNavigate={navigate} />;
     }
   };
