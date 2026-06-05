@@ -1,3 +1,4 @@
+import WhatsAppButton from './components/WhatsAppButton';
 import { useState } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -40,7 +41,10 @@ function App() {
     <div className="min-h-screen flex flex-col">
       <Navbar currentPage={currentPage} onNavigate={navigate} />
       <main className="flex-1">{renderPage()}</main>
-      <Footer onNavigate={navigate} />
+      <>
+  <WhatsAppButton />
+  <Footer onNavigate={navigate} />
+</>
     </div>
   );
 }
