@@ -42,8 +42,8 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
           <button onClick={() => nav('home')} className="flex items-center gap-2.5 group">
            <img
   src={logo}
-  alt="Capital Hill. In"
-  className="h-26 w-auto"
+  alt=
+  className="h-24 w-auto"
 />
         
             <div className="leading-none">
