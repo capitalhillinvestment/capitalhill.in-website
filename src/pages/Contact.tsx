@@ -59,10 +59,10 @@ const handleSubmit = async (e: React.FormEvent) => {
       <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-3 gap-10">
           <div className="lg:col-span-1 space-y-6">
-            <div><h2 className="text-2xl font-bold text-slate-900 mb-2">Get in Touch</h2><p className="text-slate-500 text-sm">Reach out through any of these channels and we'll respond within 24 hours.</p></div>
+            <div><h2 className="text-2xl font-bold text-slate-900 mb-2">Get in Touch</h2><p className="text-slate-500 text-sm">Thank you for contacting Capital Hill Investment. Our team will review your enquiry and contact you shortly.</p></div>
             {[
               { icon: Phone, title: 'Phone', lines: ['+91 9136125220], sub: 'Mon–Sat 9AM to 6PM' },
-              { icon: Mail, title: 'Email', lines: ['support@capitalhill.in'], sub: 'We reply within 24 hours' },
+              { icon: Mail, title: 'Email', lines: ['support@capitalhill.in'], sub: 'Thank you for contacting Capital Hill Investment. Our team will review your enquiry and contact you shortly.' },
               { icon: MapPin, title: 'Head Office', lines: ['B-114, Hill Road, Elco Market, Bandra West, Mumbai-400050'], sub: '' },
               { icon: Clock, title: 'Business Hours', lines: ['Monday – Saturday: 11:30 AM – 6:00 PM'], sub: 'Sunday: Closed' },
             ].map(item => (
@@ -91,7 +91,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                 <div className="text-center py-12">
                   <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4"><CheckCircle className="w-8 h-8 text-emerald-600" /></div>
                   <h3 className="text-2xl font-bold text-slate-900 mb-2">Thank You!</h3>
-                  <p className="text-slate-500 mb-6">We've received your inquiry. Our advisor will contact you within 24 hours.</p>
+                  <p className="text-slate-500 mb-6">Thank you for contacting Capital Hill Investment. Our team will review your enquiry and contact you shortly.</p>
                   <button onClick={() => { setSubmitted(false); setForm({ name: '', email: '', phone: '', service: '', message: '' }); }} className="btn-outline">Send Another Message</button>
                 </div>
               ) : (
