@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, TrendingUp, ChevronDown } from 'lucide-react';
-import logo from '../assets/logo.png';
 
 type Page = string;
 
