@@ -61,7 +61,7 @@ const handleSubmit = async (e: React.FormEvent) => {
           <div className="lg:col-span-1 space-y-6">
             <div><h2 className="text-2xl font-bold text-slate-900 mb-2">Get in Touch</h2><p className="text-slate-500 text-sm">Thank you for contacting Capital Hill Investment. Our team will review your enquiry and contact you shortly.</p></div>
             {[
-              { icon: Phone, title: 'Phone', lines: ['+91 9136125220], sub: 'Mon–Sat 9AM to 6PM' },
+              { icon: Phone, title: 'Phone', lines: ['+91 9136125220'], sub: 'Mon–Sat 9AM to 6PM' },
               { icon: Mail, title: 'Email', lines: ['support@capitalhill.in'], sub: 'Thank you for contacting Capital Hill Investment. Our team will review your enquiry and contact you shortly.' },
               { icon: MapPin, title: 'Head Office', lines: ['B-114, Hill Road, Elco Market, Bandra West, Mumbai-400050'], sub: '' },
               { icon: Clock, title: 'Business Hours', lines: ['Monday – Saturday: 11:30 AM – 6:00 PM'], sub: 'Sunday: Closed' },
