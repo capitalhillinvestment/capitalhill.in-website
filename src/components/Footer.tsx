@@ -69,13 +69,26 @@ export default function Footer({ onNavigate }: FooterProps) {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-xs text-slate-500 text-center md:text-left">&copy; {new Date().getFullYear()} Capital Hill Investment. All rights reserved. | ARN. No. 302794</p>
             <div className="flex items-center gap-4 text-xs text-slate-500">
-              <a href="#" className="hover:text-slate-300 transition-colors">
+              <button
+  onClick={() => nav('privacy-policy')}
+  className="hover:text-slate-300 transition-colors"
+>
   Privacy Policy
-</a>
+</button>
               <span>|</span>
-              <a href="#" className="hover:text-slate-300 transition-colors">Terms of Use</a>
+            <button
+  onClick={() => nav('terms-of-use')}
+  className="hover:text-slate-300 transition-colors"
+>
+  Terms of Use
+</button>
               <span>|</span>
-              <a href="#" className="hover:text-slate-300 transition-colors">Disclaimer</a>
+             <button
+  onClick={() => nav('disclaimer')}
+  className="hover:text-slate-300 transition-colors"
+>
+  Disclaimer
+</button>
             </div>
           </div>
           <p className="text-xs text-slate-600 mt-4 text-center">Investments in securities market are subject to market risk. Please read all related documents carefully before investing. Past performance is not indicative of future returns.</p>
