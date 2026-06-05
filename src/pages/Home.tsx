@@ -3,9 +3,9 @@ import { ArrowRight, ShieldCheck, TrendingUp, Users, Award, BarChart2, Star, Che
 interface HomeProps { onNavigate: (page: string) => void; }
 
 const stats = [
-  { value: '₹5,000 Cr+', label: 'Assets Under Management' },
-  { value: '50,000+', label: 'Happy Investors' },
-  { value: '18+', label: 'Years of Excellence' },
+  { value: '₹2,500 Cr+', label: 'Handled Assets Under Management' },
+  { value: '1,000', label: 'Handeled Happy Investors' },
+  { value: '7+', label: 'Years of Excellence' },
   { value: '4.9/5', label: 'Client Rating' },
 ];
 
