@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+  h1, h2, h3 { font-family: 'Playfair Display', serif; }
+}
+
+@layer components {
+  .nav-link { @apply text-slate-700 hover:text-emerald-600 font-medium transition-colors duration-200 text-sm; }
+  .btn-primary { @apply bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200 shadow-sm hover:shadow-md; }
+  .btn-outline { @apply border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-600 hover:text-white font-semibold px-6 py-3 rounded-lg transition-all duration-200; }
+  .card { @apply bg-white rounded-2xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow duration-300; }
+  .section-title { @apply text-3xl md:text-4xl font-bold text-slate-900 leading-tight; }
+  .section-subtitle { @apply text-slate-500 text-lg leading-relaxed; }
+  .badge { @apply inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-700 text-xs font-semibold px-3 py-1 rounded-full border border-emerald-100; }
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f1f5f9; }
+::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 3px; }
