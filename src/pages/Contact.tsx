@@ -160,11 +160,11 @@ const handleSubmit = async (e: React.FormEvent) => {
   href="https://play.google.com/store/apps/details?id=com.capitalhillinvestmentapp.app&pcampaignid=web_share"
   target="_blank"
   rel="noopener noreferrer"
-  className="bg-slate-800 border border-slate-700 hover:border-slate-500 text-white font-semibold px-7 py-3.5 rounded-xl transition-colors flex items-center gap-3"
+  className="inline-flex items-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-4 rounded-xl font-semibold transition-colors shadow-lg"
 >
-  <div className="text-left">
-    <div className="text-xs text-slate-400">Get it on</div>
-    <div className="font-bold">Google Play</div>
+  <div>
+    <div className="text-xs opacity-80">Download Our App</div>
+    <div className="text-lg font-bold">Google Play Store</div>
   </div>
 </a>
           </div>
