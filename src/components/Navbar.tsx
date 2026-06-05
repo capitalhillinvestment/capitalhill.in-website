@@ -39,8 +39,11 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           <button onClick={() => nav('home')} className="flex items-center gap-2.5 group">
-            <div className="w-9 h-9 bg-emerald-600 rounded-lg flex items-center justify-center shadow-sm group-hover:bg-emerald-700 transition-colors">
-              <TrendingUp className="w-5 h-5 text-white" />
+           <img
+  src={logo}
+  alt="Capital Hill Investment"
+  className="h-12 w-auto"
+/>
             </div>
             <div className="leading-none">
               <div className="text-slate-900 font-bold text-base tracking-tight">Capital Hill</div>
