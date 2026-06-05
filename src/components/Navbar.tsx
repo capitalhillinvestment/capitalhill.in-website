@@ -42,7 +42,6 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
           <button onClick={() => nav('home')} className="flex items-center gap-2.5 group">
            <img
   src={logo}
-  alt=
   className="h-24 w-auto"
 />
         
