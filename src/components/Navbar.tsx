@@ -44,7 +44,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
   alt="Capital Hill Investment"
   className="h-12 w-auto"
 />
-            </div>
+        
             <div className="leading-none">
               <div className="text-slate-900 font-bold text-base tracking-tight">Capital Hill</div>
               <div className="text-emerald-600 text-[10px] font-semibold uppercase tracking-widest">Investment</div>
