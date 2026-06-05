@@ -54,7 +54,14 @@ export default function Footer({ onNavigate }: FooterProps) {
               <li className="flex items-center gap-3"><Phone className="w-4 h-4 text-emerald-400 shrink-0" /><a href="tel:+911141234567" className="text-sm text-slate-400 hover:text-emerald-400 transition-colors">+91 91361 25220</a></li>
               <li className="flex items-center gap-3"><Mail className="w-4 h-4 text-emerald-400 shrink-0" /><a href="mailto:support@capitalhill.in" className="text-sm text-slate-400 hover:text-emerald-400 transition-colors">support@capitalhill.in</a></li>
             </ul>
-            <button className="btn-primary text-sm py-2.5 px-4 w-full mt-5">Download App</button>
+            <a
+  href="https://play.google.com/store/apps/details?id=com.capitalhillinvestmentapp.app&pcampaignid=web_share"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="btn-primary text-sm py-2.5 px-4 w-full mt-5 inline-block text-center"
+>
+  Download App
+</a>
           </div>
         </div>
 
