@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, TrendingUp, ChevronDown } from 'lucide-react';
+import logo from '../assets/logo.png';
 
 type Page = string;
 
@@ -39,9 +40,10 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           <button onClick={() => nav('home')} className="flex items-center gap-2.5 group">
-           <img
+          <img
   src={logo}
-  className="h-20 w-auto"
+  alt="Capital Hill Investment"
+  className="h-16 w-auto"
 />
         
             <div className="leading-none">
