@@ -83,12 +83,12 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
 
           <div className="hidden lg:flex items-center gap-3">
             <button onClick={() => nav('contact')} className="text-sm font-semibold text-slate-700 hover:text-emerald-600 transition-colors px-3 py-2">Contact</button>
-            <button
-  className="btn- text-sm py-2 px-5"
-  onClick={() => window.location.href = "https://clients.capitalhill.in"}
+         <a
+  href="https://clients.capitalhill.in"
+  className="btn-primary w-full text-sm py-3 block text-center"
 >
   Client Login
-</button>          </div>
+</a></div>
 
           <button onClick={() => setMenuOpen(!menuOpen)} className="lg:hidden p-2 text-slate-600 hover:bg-slate-100 rounded-lg">
             {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
