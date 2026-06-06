@@ -127,7 +127,6 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
   </button>
 </div>
         </div>
-      )}
     </header>
   );
 }
