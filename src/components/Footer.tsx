@@ -1,4 +1,5 @@
 import { TrendingUp, Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Youtube } from 'lucide-react';
+import logo from '../assets/log.png';
 
 interface FooterProps { onNavigate: (page: string) => void; }
 
@@ -12,7 +13,11 @@ export default function Footer({ onNavigate }: FooterProps) {
           <div>
             <button onClick={() => nav('home')} className="flex items-center gap-2.5 mb-4">
               <div className="w-9 h-9 bg-emerald-500 rounded-lg flex items-center justify-center">
-                <TrendingUp className="w-5 h-5 text-white" />
+                <img
+  src={log}
+  alt="Capital Hill Investment"
+  className="h-10 w-auto"
+/>
               </div>
               <div className="leading-none">
                 <div className="text-white font-bold text-base">Capital Hill</div>
