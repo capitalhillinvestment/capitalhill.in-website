@@ -14,7 +14,7 @@ export default function Footer({ onNavigate }: FooterProps) {
             <button onClick={() => nav('home')} className="flex items-center gap-2.5 mb-4">
               <div className="w-9 h-9 bg-emerald-500 rounded-lg flex items-center justify-center">
                 <img
-  src={log}
+  src={logo}
   alt="Capital Hill Investment"
   className="h-10 w-auto"
 />
