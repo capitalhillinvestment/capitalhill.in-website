@@ -84,7 +84,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
           <div className="hidden lg:flex items-center gap-3">
             <button onClick={() => nav('contact')} className="text-sm font-semibold text-slate-700 hover:text-emerald-600 transition-colors px-3 py-2">Contact</button>
             <button
-  className="btn-primary text-sm py-2 px-5"
+  className="btn- text-sm py-2 px-5"
   onClick={() => window.location.href = "https://clients.capitalhill.in"}
 >
   Client Login
@@ -118,7 +118,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
                 {item.label}
               </button>
             ))}
-            <div className="pt-2">
+          <div className="pt-2">
   <button
     className="btn-primary w-full text-sm py-3"
     onClick={() => window.location.href = "https://clients.capitalhill.in"}
@@ -126,7 +126,10 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
     Client Login
   </button>
 </div>
+          </div>
         </div>
+      )}
     </header>
   );
 }
+
