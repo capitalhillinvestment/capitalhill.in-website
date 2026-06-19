@@ -80,23 +80,15 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
             </div>
           </button>
 
-          <nav className="hidden lg:flex items-center gap-1">
-            {[
- { label: 'Home', page: 'home' },
- { label: 'About Us', page: 'about' },
- { label: 'Why Invest?', page: 'why-invest' },
- { label: 'Investment Basics', page: 'investment-basics' }
-].map(item => (
-              <button key={item.page} onClick={() => nav(item.page)}
-                className={`nav-link px-3 py-2 rounded-lg ${currentPage === item.page ? 'text-emerald-600 bg-emerald-50' : 'hover:bg-slate-50'}`}>
-                {item.label}
-              </button>
-            ))}
-          <div ref={dropdownRef} className="flex items-center">
-
+       <nav className="hidden lg:flex items-center gap-1">
+  <div className="flex items-center gap-1" ref={dropdownRef}>
+    
   {/* Products */}
   <div className="relative">
-    <button onClick={() => setProductsOpen(!productsOpen)}
+    <button onClick={() => {
+  setProductsOpen(true);
+  setResearchOpen(false);
+}}
       className={`nav-link px-3 py-2 rounded-lg flex items-center gap-1 ${products.some(p => p.page === currentPage) ? 'text-emerald-600 bg-emerald-50' : 'hover:bg-slate-50'}`}>
       Products <ChevronDown className={`w-4 h-4 transition-transform ${productsOpen ? 'rotate-180' : ''}`} />
     </button>
@@ -116,10 +108,10 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
   {/* Research */}
   <div className="relative">
     <button
-      onClick={() => {
-        setResearchOpen(!researchOpen);
-        setProductsOpen(false);
-      }}
+ onClick={() => {
+  setResearchOpen(true);
+  setProductsOpen(false);
+}}
       className={`nav-link px-3 py-2 rounded-lg flex items-center gap-1 ${
         research.some(r => r.page === currentPage)
           ? 'text-blue-600 bg-blue-50'
@@ -145,13 +137,16 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
 </div>
 
 {/* Calculator OUTSIDE wrapper */}
-<button onClick={() => nav('calculators')}
-  className={`nav-link px-3 py-2 rounded-lg ${currentPage === 'calculators' ? 'text-emerald-600 bg-emerald-50' : 'hover:bg-slate-50'}`}>
+<button
+  onClick={() => nav('calculators')}
+  className={`nav-link px-3 py-2 rounded-lg ${
+    currentPage === 'calculators'
+      ? 'text-emerald-600 bg-emerald-50'
+      : 'hover:bg-slate-50'
+  }`}
+>
   Calculators
 </button>
-              className={`nav-link px-3 py-2 rounded-lg ${currentPage === 'calculators' ? 'text-emerald-600 bg-emerald-50' : 'hover:bg-slate-50'}`}>
-              Calculators
-            </button>
           </nav>
 
           <div className="hidden lg:flex items-center gap-3">
