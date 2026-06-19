@@ -7,11 +7,17 @@ import About from './pages/About';
 import WhyInvest from './pages/WhyInvest';
 import InvestmentBasics from './pages/InvestmentBasics';
 import MutualFunds from './pages/MutualFunds';
-import MutualFunds from './pages/MutualFunds';
 import PMS from './pages/PMS';
 import AIF from './pages/AIF';
 import IPO from './pages/IPO';
 import NFO from './pages/NFO';
+import {
+  MutualFundResearch,
+  FundComparison,
+  FundScreener,
+  TopFunds,
+  MarketInsights,
+} from './pages/research';
 import Calculators from './pages/Calculators';
 import Contact from './pages/Contact';
 import PrivacyPolicy from './pages/PrivacyPolicy';
