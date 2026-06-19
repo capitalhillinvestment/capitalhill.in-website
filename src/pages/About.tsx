@@ -48,11 +48,19 @@ Capital Hill Investment was established with a vision to make financial planning
 <p className="text-slate-600 leading-relaxed mb-8">
 Our approach combines financial planning with suitable investment solutions including Mutual Funds, Insurance, PMS, AIFs, Fixed Income products, and goal-based strategies. We focus on helping clients create, grow, protect, and transfer wealth efficiently.
 </p>
-            <div className="grid grid-cols-2 gap-4">
-              {.map(s => (
-                <div key={s.label} className="bg-slate-50 rounded-xl p-4"><p className="text-2xl font-bold text-emerald-600">{s.num}</p><p className="text-slate-500 text-sm">{s.label}</p></div>
-              ))}
-            </div>
+         <div className="grid grid-cols-2 gap-4">
+  {[
+    { num: 'MF', label: 'Mutual Funds' },
+    { num: 'FP', label: 'Financial Planning' },
+    { num: 'PMS', label: 'Portfolio Management' },
+    { num: 'AIF', label: 'Alternative Investments' }
+  ].map(s => (
+    <div key={s.label} className="bg-slate-50 rounded-xl p-4">
+      <p className="text-2xl font-bold text-emerald-600">{s.num}</p>
+      <p className="text-slate-500 text-sm">{s.label}</p>
+    </div>
+  ))}
+</div>
           </div>
           <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Team working" className="rounded-2xl shadow-xl w-full object-cover" style={{ height: 480 }} />
         </div>
@@ -102,7 +110,7 @@ Our approach combines financial planning with suitable investment solutions incl
             <h2 className="section-title">Honored by the Best</h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[{ award: 'Best Investment Advisor', org: 'Economic Times Awards', year: '2024' }, { award: 'Top Wealth Manager', org: 'CNBC TV18 India', year: '2023' }, { award: 'Client Excellence Award', org: 'AMFI India', year: '2023' }, { award: 'Best MF Distributor', org: 'Outlook Money', year: '2022' }].map(a => (
+            {[{ award: 'Best Investment Advisor', org: 'Economic Times Awards', year: '2024' }, { award: 'Top Wealth Manager', org: 'CNBC TV18 India', year: '2023' }, { award: 'Client Excellence Award', org: 'AMFI India', year: '2023' }, { award: 'Best  Distributor', org: 'Outlook Money', year: '2022' }].map(a => (
               <div key={a.award} className="card p-5 text-center">
                 <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center mx-auto mb-3"><Award className="w-5 h-5 text-amber-600" /></div>
                 <p className="font-semibold text-slate-900 text-sm mb-1">{a.award}</p>
