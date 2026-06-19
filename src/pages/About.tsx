@@ -42,6 +42,31 @@ Capital Hill Investment helps individuals and families make informed financial d
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-14 items-center">
           <div>
             <div className="badge mb-4">Our Story</div>
+            <section className="py-20 bg-slate-50">
+  <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <div className="grid md:grid-cols-2 gap-8">
+
+      <div className="card p-8">
+        <h3 className="text-2xl font-bold mb-4 text-emerald-600">
+          Our Mission
+        </h3>
+        <p className="text-slate-600 leading-relaxed">
+          To help individuals and families make informed financial decisions through planning, education, and suitable investment solutions.
+        </p>
+      </div>
+
+      <div className="card p-8">
+        <h3 className="text-2xl font-bold mb-4 text-emerald-600">
+          Our Vision
+        </h3>
+        <p className="text-slate-600 leading-relaxed">
+          To create a future where every individual has access to structured financial planning and the opportunity to achieve financial independence.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
             <h2 className="section-title mb-5">Helping Investors Build Wealth with Purpose</h2>
             <p className="text-slate-600 leading-relaxed mb-5">
 Capital Hill Investment was established with a vision to make financial planning and wealth creation accessible to every investor. We believe that successful investing begins with understanding life goals, risk appetite, and financial priorities.
@@ -169,8 +194,8 @@ Our approach combines financial planning with suitable investment solutions incl
 
       <section className="py-16 bg-emerald-600">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">Join Our Growing Family</h2>
-          <p className="text-emerald-100 mb-8">Over 50,000 investors trust Capital Hill with their wealth. Start your journey today.</p>
+          <h2 className="text-3xl font-bold text-white mb-4">Let's Compound Your Future</h2>
+          <p className="text-emerald-100 mb-8">Whether you're investing for retirement, your child's education, wealth creation, or financial independence, we're here to help you build a structured financial plan. Start your journey today.</p>
           <div className="flex flex-wrap gap-4 justify-center">
             <button onClick={() => nav('contact')} className="bg-white text-emerald-700 hover:bg-emerald-50 font-semibold px-8 py-3 rounded-lg transition-colors">Book a Consultation</button>
             <button onClick={() => nav('why-invest')} className="border-2 border-white text-white hover:bg-white/10 font-semibold px-8 py-3 rounded-lg transition-colors">Why Invest?</button>
