@@ -40,11 +40,16 @@ Capital Hill Investment helps individuals and families make informed financial d
         <div className="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-14 items-center">
           <div>
             <div className="badge mb-4">Our Story</div>
-            <h2 className="section-title mb-5">18+ Years of Trusted Wealth Management</h2>
-            <p className="text-slate-600 leading-relaxed mb-5">Capital Hill Investment was founded in 2006 with a simple but powerful vision — to make sophisticated investment strategies accessible to every Indian investor, not just the ultra-wealthy.</p>
-            <p className="text-slate-600 leading-relaxed mb-8">Today, we offer a full spectrum of investment solutions — from Mutual Funds for first-time investors to PMS and AIF for HNIs — all guided by our core principle of putting client wealth first.</p>
+            <h2 className="section-title mb-5">Helping Investors Build Wealth with Purpose</h2>
+            <p className="text-slate-600 leading-relaxed mb-5">
+Capital Hill Investment was established with a vision to make financial planning and wealth creation accessible to every investor. We believe that successful investing begins with understanding life goals, risk appetite, and financial priorities.
+</p>
+
+<p className="text-slate-600 leading-relaxed mb-8">
+Our approach combines financial planning with suitable investment solutions including Mutual Funds, Insurance, PMS, AIFs, Fixed Income products, and goal-based strategies. We focus on helping clients create, grow, protect, and transfer wealth efficiently.
+</p>
             <div className="grid grid-cols-2 gap-4">
-              {[{ num: '2006', label: 'Founded' }, { num: '₹5,000 Cr+', label: 'AUM' }, { num: '50,000+', label: 'Investors' }, { num: '20+', label: 'Cities' }].map(s => (
+              {.map(s => (
                 <div key={s.label} className="bg-slate-50 rounded-xl p-4"><p className="text-2xl font-bold text-emerald-600">{s.num}</p><p className="text-slate-500 text-sm">{s.label}</p></div>
               ))}
             </div>
