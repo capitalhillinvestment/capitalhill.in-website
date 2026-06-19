@@ -8,7 +8,27 @@ interface NavbarProps {
   currentPage: Page;
   onNavigate: (page: Page) => void;
 }
-
+<div className="flex items-center gap-1">
+  {[
+    { label: 'Home', page: 'home' },
+    { label: 'About Us', page: 'about' },
+    { label: 'Why Invest?', page: 'why-invest' },
+    { label: 'Investment Basics', page: 'investment-basics' },
+    { label: 'Contact', page: 'contact' },
+  ].map(item => (
+    <button
+      key={item.page}
+      onClick={() => nav(item.page)}
+      className={`nav-link px-3 py-2 rounded-lg ${
+        currentPage === item.page
+          ? 'text-emerald-600 bg-emerald-50'
+          : 'hover:bg-slate-50'
+      }`}
+    >
+      {item.label}
+    </button>
+  ))}
+</div>
 const products = [
   { label: 'Mutual Funds', page: 'mutual-funds' },
   { label: 'PMS', page: 'pms' },
