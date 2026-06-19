@@ -15,13 +15,21 @@ const products = [
   { label: 'AIF', page: 'aif' },
   { label: 'IPO', page: 'ipo' },
   { label: 'NFO', page: 'nfo' },
-  { label: 'Research', page: 'research-mf' }
+];
+
+const research = [
+  { label: 'Mutual Fund Research', page: 'research-mf' },
+  { label: 'Fund Comparison', page: 'research-compare' },
+  { label: 'Fund Screener', page: 'research-screener' },
+  { label: 'Top Performing Funds', page: 'research-top' },
+  { label: 'Market Insights', page: 'research-insights' },
 ];
 
 export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+  const [researchOpen, setResearchOpen] = useState(false);
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
@@ -33,6 +41,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
     onNavigate(page);
     setMenuOpen(false);
     setProductsOpen(false);
+    setResearchOpen(false);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
