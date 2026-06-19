@@ -185,68 +185,92 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
         </div>
       </div>
 
-      {menuOpen && (
-        <div className="lg:hidden bg-white border-t border-slate-100 shadow-lg">
-          <div className="px-4 py-4 space-y-1 max-h-[80vh] overflow-y-auto">
-            {[{ label: 'Home', page: 'home' }, { label: 'About Us', page: 'about' }, { label: 'Why Invest?', page: 'why-invest' }, { label: 'Investment Basics', page: 'investment-basics' }].map(item => (
-              <button key={item.page} onClick={() => nav(item.page)}
-                className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium ${currentPage === item.page ? 'text-emerald-600 bg-emerald-50' : 'text-slate-700 hover:bg-slate-50'}`}>
-                {item.label}
-              </button>
-            ))}
-<p className="px-4 pt-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">
-  Products
-</p>
+     {menuOpen && (
+  <div className="lg:hidden bg-white border-t border-slate-100 shadow-lg">
+    <div className="px-4 py-4 space-y-2">
 
-{products.map(p => (
-  <button
-    key={p.page}
-    onClick={() => nav(p.page)}
-    className={`w-full text-left px-6 py-3 rounded-lg text-sm font-medium ${
-      currentPage === p.page
-        ? 'text-emerald-600 bg-emerald-50'
-        : 'text-slate-700 hover:bg-slate-50'
-    }`}
-  >
-    {p.label}
-  </button>
-))}
+      {/* MAIN PAGES */}
+      {[
+        { label: 'Home', page: 'home' },
+        { label: 'About Us', page: 'about' },
+        { label: 'Why Invest?', page: 'why-invest' },
+        { label: 'Investment Basics', page: 'investment-basics' },
+        { label: 'Contact', page: 'contact' },
+      ].map(item => (
+        <button
+          key={item.page}
+          onClick={() => nav(item.page)}
+          className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium ${
+            currentPage === item.page
+              ? 'text-emerald-600 bg-emerald-50'
+              : 'text-slate-700 hover:bg-slate-50'
+          }`}
+        >
+          {item.label}
+        </button>
+      ))}
 
-<p className="px-4 pt-4 text-xs font-semibold text-blue-600 uppercase tracking-wider">
-  Research
-</p>
+      {/* PRODUCTS */}
+      <p className="px-4 pt-3 text-xs font-semibold text-slate-400 uppercase">
+        Products
+      </p>
 
-{research.map(r => (
-  <button
-    key={r.page}
-    onClick={() => nav(r.page)}
-    className={`w-full text-left px-6 py-3 rounded-lg text-sm font-medium ${
-      currentPage === r.page
-        ? 'text-blue-600 bg-blue-50'
-        : 'text-slate-700 hover:bg-slate-50'
-    }`}
-  >
-    {r.label}
-  </button>
-))}
-            {[{ label: 'Calculators', page: 'calculators' }, { label: 'Contact Us', page: 'contact' }].map(item => (
-              <button key={item.page} onClick={() => nav(item.page)}
-                className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium ${currentPage === item.page ? 'text-emerald-600 bg-emerald-50' : 'text-slate-700 hover:bg-slate-50'}`}>
-                {item.label}
-              </button>
-            ))}
-          <div className="pt-2">
-  <button
-    className="btn-primary w-full text-sm py-3"
-    onClick={() => window.location.href = "https://clients.capitalhill.in"}
-  >
-    Client Login
-  </button>
-</div>
-          </div>
-        </div>
-      )}
-    </header>
+      {products.map(p => (
+        <button
+          key={p.page}
+          onClick={() => nav(p.page)}
+          className={`w-full text-left px-6 py-3 rounded-lg text-sm font-medium ${
+            currentPage === p.page
+              ? 'text-emerald-600 bg-emerald-50'
+              : 'text-slate-700 hover:bg-slate-50'
+          }`}
+        >
+          {p.label}
+        </button>
+      ))}
+
+      {/* RESEARCH */}
+      <p className="px-4 pt-4 text-xs font-semibold text-blue-600 uppercase">
+        Research
+      </p>
+
+      {research.map(r => (
+        <button
+          key={r.page}
+          onClick={() => nav(r.page)}
+          className={`w-full text-left px-6 py-3 rounded-lg text-sm font-medium ${
+            currentPage === r.page
+              ? 'text-blue-600 bg-blue-50'
+              : 'text-slate-700 hover:bg-slate-50'
+          }`}
+        >
+          {r.label}
+        </button>
+      ))}
+
+      {/* CALCULATORS */}
+      <button
+        onClick={() => nav('calculators')}
+        className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium ${
+          currentPage === 'calculators'
+            ? 'text-emerald-600 bg-emerald-50'
+            : 'text-slate-700 hover:bg-slate-50'
+        }`}
+      >
+        Calculators
+      </button>
+
+      {/* CLIENT LOGIN */}
+      <button
+        className="btn-primary w-full text-sm py-3 mt-3"
+        onClick={() => window.location.href = "https://clients.capitalhill.in"}
+      >
+        Client Login
+      </button>
+
+    </div>
+  </div>
+)}
   );
 }
 
