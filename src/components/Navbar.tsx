@@ -15,6 +15,7 @@ const products = [
   { label: 'AIF', page: 'aif' },
   { label: 'IPO', page: 'ipo' },
   { label: 'NFO', page: 'nfo' },
+  { label: 'Research', page: 'research' }
 ];
 
 export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
