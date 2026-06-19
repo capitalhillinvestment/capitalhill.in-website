@@ -7,6 +7,7 @@ import About from './pages/About';
 import WhyInvest from './pages/WhyInvest';
 import InvestmentBasics from './pages/InvestmentBasics';
 import MutualFunds from './pages/MutualFunds';
+import MutualFunds from './pages/MutualFunds';
 import PMS from './pages/PMS';
 import AIF from './pages/AIF';
 import IPO from './pages/IPO';
@@ -27,6 +28,11 @@ type Page =
   | 'aif'
   | 'ipo'
   | 'nfo'
+  | 'research-mf'
+  | 'research-compare'
+  | 'research-screener'
+  | 'research-top'
+  | 'research-insights'
   | 'calculators'
   | 'contact'
   | 'privacy-policy'
@@ -48,6 +54,11 @@ function App() {
       case 'aif': return <AIF onNavigate={navigate} />;
       case 'ipo': return <IPO onNavigate={navigate} />;
       case 'nfo': return <NFO onNavigate={navigate} />;
+      case 'research-mf': return <MutualFundResearch onNavigate={navigate} />;
+      case 'research-compare': return <FundComparison onNavigate={navigate} />;
+      case 'research-screener': return <FundScreener onNavigate={navigate} />;
+      case 'research-top': return <TopFunds onNavigate={navigate} />;
+      case 'research-insights': return <MarketInsights onNavigate={navigate} />;
       case 'calculators': return <Calculators onNavigate={navigate} />;
       case 'contact': return <Contact onNavigate={navigate} />;
         case 'privacy-policy':
