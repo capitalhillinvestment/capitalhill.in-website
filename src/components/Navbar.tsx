@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Menu, X, TrendingUp, ChevronDown } from 'lucide-react';
 import logo from '../assets/log.png';
 
@@ -30,12 +30,30 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [researchOpen, setResearchOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handler);
     return () => window.removeEventListener('scroll', handler);
-  }, []);
+    }, []);
+  useEffect(() => {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
+      setProductsOpen(false);
+      setResearchOpen(false);
+    }
+  };
+
+  document.addEventListener('mousedown', handleClickOutside);
+
+  return () => {
+    document.removeEventListener('mousedown', handleClickOutside);
+  };
+}, []);
 
  const nav = (page: string) => {
   onNavigate(page);
@@ -74,61 +92,63 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
                 {item.label}
               </button>
             ))}
-            <div className="relative">
-              <button onClick={() => setProductsOpen(!productsOpen)}
-                className={`nav-link px-3 py-2 rounded-lg flex items-center gap-1 ${products.some(p => p.page === currentPage) ? 'text-emerald-600 bg-emerald-50' : 'hover:bg-slate-50'}`}>
-                Products <ChevronDown className={`w-4 h-4 transition-transform ${productsOpen ? 'rotate-180' : ''}`} />
-              </button>
-              {productsOpen && (
-                <div className="absolute top-full left-0 mt-1 w-44 bg-white rounded-xl shadow-lg border border-slate-100 py-1 z-50">
-                  {products.map(p => (
-                    <button key={p.page} onClick={() => nav(p.page)}
-                      className={`w-full text-left px-4 py-2.5 text-sm font-medium transition-colors ${currentPage === p.page ? 'text-emerald-600 bg-emerald-50' : 'text-slate-700 hover:bg-slate-50'}`}>
-                      {p.label}
-                    </button>
-                  ))}
-                </div>
-              )}
-              </div>
-              <div className="relative">
-  <button
-    onClick={() => {
-      setResearchOpen(!researchOpen);
-      setProductsOpen(false);
-    }}
-    className={`nav-link px-3 py-2 rounded-lg flex items-center gap-1 ${
-      research.some(r => r.page === currentPage)
-        ? 'text-blue-600 bg-blue-50'
-        : 'hover:bg-slate-50'
-    }`}
-  >
-    Research
-    <ChevronDown
-      className={`w-4 h-4 transition-transform ${
-        researchOpen ? 'rotate-180' : ''
-      }`}
-    />
-  </button>
+          <div ref={dropdownRef} className="flex items-center">
 
-  {researchOpen && (
-    <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-lg border border-slate-100 py-1 z-50">
-      {research.map(r => (
-        <button
-          key={r.page}
-          onClick={() => nav(r.page)}
-          className={`w-full text-left px-4 py-2.5 text-sm font-medium ${
-            currentPage === r.page
-              ? 'text-blue-600 bg-blue-50'
-              : 'text-slate-700 hover:bg-slate-50'
-          }`}
-        >
-          {r.label}
-        </button>
-      ))}
-    </div>
-  )}
+  {/* Products */}
+  <div className="relative">
+    <button onClick={() => setProductsOpen(!productsOpen)}
+      className={`nav-link px-3 py-2 rounded-lg flex items-center gap-1 ${products.some(p => p.page === currentPage) ? 'text-emerald-600 bg-emerald-50' : 'hover:bg-slate-50'}`}>
+      Products <ChevronDown className={`w-4 h-4 transition-transform ${productsOpen ? 'rotate-180' : ''}`} />
+    </button>
+
+    {productsOpen && (
+      <div className="absolute top-full left-0 mt-1 w-44 bg-white rounded-xl shadow-lg border border-slate-100 py-1 z-50">
+        {products.map(p => (
+          <button key={p.page} onClick={() => nav(p.page)}
+            className={`w-full text-left px-4 py-2.5 text-sm font-medium ${currentPage === p.page ? 'text-emerald-600 bg-emerald-50' : 'text-slate-700 hover:bg-slate-50'}`}>
+            {p.label}
+          </button>
+        ))}
+      </div>
+    )}
+  </div>
+
+  {/* Research */}
+  <div className="relative">
+    <button
+      onClick={() => {
+        setResearchOpen(!researchOpen);
+        setProductsOpen(false);
+      }}
+      className={`nav-link px-3 py-2 rounded-lg flex items-center gap-1 ${
+        research.some(r => r.page === currentPage)
+          ? 'text-blue-600 bg-blue-50'
+          : 'hover:bg-slate-50'
+      }`}
+    >
+      Research
+      <ChevronDown className={`w-4 h-4 transition-transform ${researchOpen ? 'rotate-180' : ''}`} />
+    </button>
+
+    {researchOpen && (
+      <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-lg border border-slate-100 py-1 z-50">
+        {research.map(r => (
+          <button key={r.page} onClick={() => nav(r.page)}
+            className={`w-full text-left px-4 py-2.5 text-sm font-medium ${currentPage === r.page ? 'text-blue-600 bg-blue-50' : 'text-slate-700 hover:bg-slate-50'}`}>
+            {r.label}
+          </button>
+        ))}
+      </div>
+    )}
+  </div>
+
 </div>
-            <button onClick={() => nav('calculators')}
+
+{/* Calculator OUTSIDE wrapper */}
+<button onClick={() => nav('calculators')}
+  className={`nav-link px-3 py-2 rounded-lg ${currentPage === 'calculators' ? 'text-emerald-600 bg-emerald-50' : 'hover:bg-slate-50'}`}>
+  Calculators
+</button>
               className={`nav-link px-3 py-2 rounded-lg ${currentPage === 'calculators' ? 'text-emerald-600 bg-emerald-50' : 'hover:bg-slate-50'}`}>
               Calculators
             </button>
