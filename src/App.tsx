@@ -60,7 +60,8 @@ function App() {
       case 'aif': return <AIF onNavigate={navigate} />;
       case 'ipo': return <IPO onNavigate={navigate} />;
       case 'nfo': return <NFO onNavigate={navigate} />;
-      case 'research-mf': return <MutualFundResearch onNavigate={navigate} />;
+      case 'research-mf':
+  return <div className="p-20 text-3xl">Research Page Working</div>;
       case 'research-compare': return <FundComparison onNavigate={navigate} />;
       case 'research-screener': return <FundScreener onNavigate={navigate} />;
       case 'research-top': return <TopFunds onNavigate={navigate} />;
