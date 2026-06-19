@@ -24,8 +24,15 @@ export default function About({ onNavigate }: AboutProps) {
       <section className="bg-gradient-to-br from-slate-900 to-slate-800 py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
           <div className="badge mx-auto mb-5">About Us</div>
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-5">Building Wealth for<br /><span className="text-emerald-400">Generations</span></h1>
-          <p className="text-slate-300 text-lg leading-relaxed max-w-2xl mx-auto">Since 2006, Capital Hill Investment has been guiding individuals and institutions towards financial prosperity through disciplined, research-driven investing.</p>
+        <h1 className="text-4xl md:text-5xl font-bold text-white mb-5">
+Your Partner in
+<br />
+<span className="text-emerald-400">Financial Growth</span>
+</h1>
+
+<p className="text-slate-300 text-lg leading-relaxed max-w-2xl mx-auto">
+Capital Hill Investment helps individuals and families make informed financial decisions through financial planning, goal-based investing, mutual funds, insurance solutions, PMS, AIFs, and wealth management services.
+</p>
         </div>
       </section>
 
