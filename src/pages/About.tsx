@@ -72,6 +72,66 @@ Our approach combines financial planning with suitable investment solutions incl
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-14">
             <div className="badge mx-auto mb-4">Our Values</div>
+            <section className="py-20 bg-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6">
+
+    <div className="text-center mb-14">
+      <div className="badge mx-auto mb-4">Why Choose Us</div>
+      <h2 className="section-title mb-4">
+        Why Capital Hill Investment?
+      </h2>
+      <p className="text-slate-600 max-w-3xl mx-auto">
+        Our focus is not just investments. We help clients build a complete financial roadmap for long-term success.
+      </p>
+    </div>
+
+    <div className="grid md:grid-cols-3 gap-6">
+
+      <div className="card p-6">
+        <h3 className="font-bold mb-3">Goal-Based Planning</h3>
+        <p className="text-slate-600">
+          Every recommendation begins with understanding your financial goals and life priorities.
+        </p>
+      </div>
+
+      <div className="card p-6">
+        <h3 className="font-bold mb-3">Financial Planning First</h3>
+        <p className="text-slate-600">
+          Investments are selected only after evaluating income, expenses, assets, liabilities and risk appetite.
+        </p>
+      </div>
+
+      <div className="card p-6">
+        <h3 className="font-bold mb-3">Technology Driven</h3>
+        <p className="text-slate-600">
+          Digital tools and analytics help clients track progress and make informed decisions.
+        </p>
+      </div>
+
+      <div className="card p-6">
+        <h3 className="font-bold mb-3">Multiple Investment Solutions</h3>
+        <p className="text-slate-600">
+          Mutual Funds, Insurance, PMS, AIFs, Fixed Income and other suitable financial solutions.
+        </p>
+      </div>
+
+      <div className="card p-6">
+        <h3 className="font-bold mb-3">Long-Term Wealth Creation</h3>
+        <p className="text-slate-600">
+          We focus on disciplined investing and compounding rather than short-term market speculation.
+        </p>
+      </div>
+
+      <div className="card p-6">
+        <h3 className="font-bold mb-3">Ongoing Reviews</h3>
+        <p className="text-slate-600">
+          Regular reviews help ensure your financial plan stays aligned with changing goals and circumstances.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
             <h2 className="section-title mb-4">What We Stand For</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
