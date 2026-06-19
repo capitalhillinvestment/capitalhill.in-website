@@ -168,7 +168,6 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
 >
   Calculators
 </button>
-          </nav>
 
           <div className="hidden lg:flex items-center gap-3">
             <button onClick={() => nav('contact')} className="text-sm font-semibold text-slate-700 hover:text-emerald-600 transition-colors px-3 py-2">Contact</button>
