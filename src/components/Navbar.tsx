@@ -37,13 +37,13 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
     return () => window.removeEventListener('scroll', handler);
   }, []);
 
-  const nav = (page: string) => {
-    onNavigate(page);
-    setMenuOpen(false);
-    setProductsOpen(false);
-    setResearchOpen(false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+ const nav = (page: string) => {
+  onNavigate(page);
+  setMenuOpen(false);
+  setProductsOpen(false);
+  setResearchOpen(false);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-white/95 backdrop-blur-sm shadow-sm'}`}>
@@ -63,7 +63,12 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
           </button>
 
           <nav className="hidden lg:flex items-center gap-1">
-            {[{ label: 'Home', page: 'home' }, { label: 'About Us', page: 'about' }, { label: 'Why Invest?', page: 'why-invest' }, { label: 'Investment Basics', page: 'investment-basics' },{ label: 'Research', page: 'research-mf' }].map(item => (
+            {[
+ { label: 'Home', page: 'home' },
+ { label: 'About Us', page: 'about' },
+ { label: 'Why Invest?', page: 'why-invest' },
+ { label: 'Investment Basics', page: 'investment-basics' }
+].map(item => (
               <button key={item.page} onClick={() => nav(item.page)}
                 className={`nav-link px-3 py-2 rounded-lg ${currentPage === item.page ? 'text-emerald-600 bg-emerald-50' : 'hover:bg-slate-50'}`}>
                 {item.label}
@@ -84,7 +89,45 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
                   ))}
                 </div>
               )}
-            </div>
+              </div>
+              <div className="relative">
+  <button
+    onClick={() => {
+      setResearchOpen(!researchOpen);
+      setProductsOpen(false);
+    }}
+    className={`nav-link px-3 py-2 rounded-lg flex items-center gap-1 ${
+      research.some(r => r.page === currentPage)
+        ? 'text-blue-600 bg-blue-50'
+        : 'hover:bg-slate-50'
+    }`}
+  >
+    Research
+    <ChevronDown
+      className={`w-4 h-4 transition-transform ${
+        researchOpen ? 'rotate-180' : ''
+      }`}
+    />
+  </button>
+
+  {researchOpen && (
+    <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-xl shadow-lg border border-slate-100 py-1 z-50">
+      {research.map(r => (
+        <button
+          key={r.page}
+          onClick={() => nav(r.page)}
+          className={`w-full text-left px-4 py-2.5 text-sm font-medium ${
+            currentPage === r.page
+              ? 'text-blue-600 bg-blue-50'
+              : 'text-slate-700 hover:bg-slate-50'
+          }`}
+        >
+          {r.label}
+        </button>
+      ))}
+    </div>
+  )}
+</div>
             <button onClick={() => nav('calculators')}
               className={`nav-link px-3 py-2 rounded-lg ${currentPage === 'calculators' ? 'text-emerald-600 bg-emerald-50' : 'hover:bg-slate-50'}`}>
               Calculators
@@ -115,13 +158,41 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
                 {item.label}
               </button>
             ))}
-            <p className="px-4 pt-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">Products</p>
-            {products.map(p => (
-              <button key={p.page} onClick={() => nav(p.page)}
-                className={`w-full text-left px-6 py-3 rounded-lg text-sm font-medium ${currentPage === p.page ? 'text-emerald-600 bg-emerald-50' : 'text-slate-700 hover:bg-slate-50'}`}>
-                {p.label}
-              </button>
-            ))}
+<p className="px-4 pt-2 text-xs font-semibold text-slate-400 uppercase tracking-wider">
+  Products
+</p>
+
+{products.map(p => (
+  <button
+    key={p.page}
+    onClick={() => nav(p.page)}
+    className={`w-full text-left px-6 py-3 rounded-lg text-sm font-medium ${
+      currentPage === p.page
+        ? 'text-emerald-600 bg-emerald-50'
+        : 'text-slate-700 hover:bg-slate-50'
+    }`}
+  >
+    {p.label}
+  </button>
+))}
+
+<p className="px-4 pt-4 text-xs font-semibold text-blue-600 uppercase tracking-wider">
+  Research
+</p>
+
+{research.map(r => (
+  <button
+    key={r.page}
+    onClick={() => nav(r.page)}
+    className={`w-full text-left px-6 py-3 rounded-lg text-sm font-medium ${
+      currentPage === r.page
+        ? 'text-blue-600 bg-blue-50'
+        : 'text-slate-700 hover:bg-slate-50'
+    }`}
+  >
+    {r.label}
+  </button>
+))}
             {[{ label: 'Calculators', page: 'calculators' }, { label: 'Contact Us', page: 'contact' }].map(item => (
               <button key={item.page} onClick={() => nav(item.page)}
                 className={`w-full text-left px-4 py-3 rounded-lg text-sm font-medium ${currentPage === item.page ? 'text-emerald-600 bg-emerald-50' : 'text-slate-700 hover:bg-slate-50'}`}>
