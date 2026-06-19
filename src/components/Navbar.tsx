@@ -87,7 +87,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
     { label: 'About Us', page: 'about' },
     { label: 'Why Invest?', page: 'why-invest' },
     { label: 'Investment Basics', page: 'investment-basics' },
-    { label: 'Contact', page: 'contact' },
+   ,
   ].map(item => (
     <button
       key={item.page}
