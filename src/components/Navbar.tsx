@@ -54,7 +54,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
           </button>
 
           <nav className="hidden lg:flex items-center gap-1">
-            {[{ label: 'Home', page: 'home' }, { label: 'About Us', page: 'about' }, { label: 'Why Invest?', page: 'why-invest' }, { label: 'Investment Basics', page: 'investment-basics' }].map(item => (
+            {[{ label: 'Home', page: 'home' }, { label: 'About Us', page: 'about' }, { label: 'Why Invest?', page: 'why-invest' }, { label: 'Investment Basics', page: 'investment-basics' },{ label: 'Research', page: 'research' }].map(item => (
               <button key={item.page} onClick={() => nav(item.page)}
                 className={`nav-link px-3 py-2 rounded-lg ${currentPage === item.page ? 'text-emerald-600 bg-emerald-50' : 'hover:bg-slate-50'}`}>
                 {item.label}
