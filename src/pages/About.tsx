@@ -105,24 +105,7 @@ Our approach combines financial planning with suitable investment solutions incl
         </div>
       </section>
 
-      <section className="py-16 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-10">
-            <div className="badge mx-auto mb-4">Awards & Recognition</div>
-            <h2 className="section-title">Honored by the Best</h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {[{ award: 'Best Investment Advisor', org: 'Economic Times Awards', year: '2024' }, { award: 'Top Wealth Manager', org: 'CNBC TV18 India', year: '2023' }, { award: 'Client Excellence Award', org: 'AMFI India', year: '2023' }, { award: 'Best  Distributor', org: 'Outlook Money', year: '2022' }].map(a => (
-              <div key={a.award} className="card p-5 text-center">
-                <div className="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center mx-auto mb-3"><Award className="w-5 h-5 text-amber-600" /></div>
-                <p className="font-semibold text-slate-900 text-sm mb-1">{a.award}</p>
-                <p className="text-slate-500 text-xs">{a.org}</p>
-                <p className="text-emerald-600 text-xs font-semibold mt-1">{a.year}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      
 
       <section className="py-16 bg-emerald-600">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
