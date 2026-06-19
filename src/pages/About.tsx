@@ -3,10 +3,12 @@ import { Users, Award, Target, Heart, TrendingUp, CheckCircle } from 'lucide-rea
 interface AboutProps { onNavigate: (page: string) => void; }
 
 const team = [
-  { name: 'Vikram Kapoor', role: 'Founder & CEO', exp: '25 years in wealth management', img: 'https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=200' },
-  { name: 'Sunita Agarwal', role: 'Chief Investment Officer', exp: 'Ex-Goldman Sachs, 20 years exp.', img: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=200' },
-  { name: 'Rohit Nair', role: 'Head of Research', exp: 'IIM Ahmedabad, CFA Charterholder', img: 'https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=200' },
-  { name: 'Anita Desai', role: 'Head of Client Relations', exp: '15 years, CFP Certified', img: 'https://images.pexels.com/photos/1181695/pexels-photo-1181695.jpeg?auto=compress&cs=tinysrgb&w=200' },
+  {
+    name: 'Dinesh Manna',
+    role: 'Founder, Capital Hill Investment',
+    exp: 'Helping investors build wealth through financial planning, mutual funds, insurance solutions, and long-term investment strategies.',
+    img: '/images/dinesh-manna.jpg'
+  }
 ];
 
 const values = [
@@ -87,8 +89,8 @@ Our approach combines financial planning with suitable investment solutions incl
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-14">
-            <div className="badge mx-auto mb-4">Leadership</div>
-            <h2 className="section-title mb-4">Meet Our Expert Team</h2>
+            <div className="badge mx-auto mb-4">Founder</div>
+            <h2 className="section-title mb-4">Meet The Founder</h2>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {team.map(m => (
