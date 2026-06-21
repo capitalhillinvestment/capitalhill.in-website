@@ -23,8 +23,23 @@ export default function TopFunds({ onNavigate }: TopFundsProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [funds, setFunds] = useState<MutualFund[]>([]);
   const [loading, setLoading] = useState(true);
+  useEffect(() => {
+  fetch("/api/top-funds")
+    .then((res) => res.json())
+    .then((result) => {
+      if (result.success) {
+        setFunds(result.data);
+      }
 
-   nav = (page: string) => {
+      setLoading(false);
+    })
+    .catch((error) => {
+      console.error(error);
+      setLoading(false);
+    });
+}, []);
+
+   const nav = (page: string) => {
     onNavigate(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
