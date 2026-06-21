@@ -6,14 +6,15 @@ export async function onRequestGet({ request }: any) {
   const query = url.searchParams.get("q")?.toLowerCase() || "";
 
   const results = fundMaster.filter(
-    (fund) =>
+    (fund: any) =>
       fund.name.toLowerCase().includes(query) ||
       fund.amc.toLowerCase().includes(query) ||
       fund.category.toLowerCase().includes(query)
   );
 
   return Response.json({
+    success: true,
     count: results.length,
-    results,
+    data: results,
   });
 }
