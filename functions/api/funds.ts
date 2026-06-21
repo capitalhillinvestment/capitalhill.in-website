@@ -1,5 +1,11 @@
-import { fundMaster } from "../data/funds/fundMaster";
+import mutualFunds from "../data/mutualFunds";
+import { calculateFundScore } from "../engine/fundScore";
 
 export async function onRequestGet() {
-  return Response.json(fundMaster);
+  const enriched = mutualFunds.map((fund) => ({
+    ...fund,
+    score: calculateFundScore(fund),
+  }));
+
+  return Response.json(enriched);
 }
