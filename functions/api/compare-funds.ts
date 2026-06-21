@@ -16,11 +16,12 @@ export async function onRequestGet({ request }: any) {
       );
     }
 
-    const fundIds = ids
-      .split(",")
-      .map((id) => id.trim());
+ const fundIds = ids
+  .split(",")
+  .map((id) => id.trim())
+  .filter(Boolean);
 
-  if (fundIds.length > 10) {
+if (fundIds.length > 10) {
   return Response.json(
     {
       success: false,
