@@ -1,4 +1,4 @@
-screener.ts code
+
 import { mutualFunds } from "../data/mutualFunds";
 
 export const onRequestGet = async ({ request }: { request: Request }) => {
