@@ -334,7 +334,7 @@ useEffect(() => {
   const clearComparison = () => setCompareList([]);
   const removeFund = (id: string) => setCompareList(compareList.filter(fid => fid !== id));
 
-  const comparisonFunds = compareList.map(id => mutualFunds.find(f => f.id === id)).filter(Boolean) as MutualFund[];
+  const comparisonFunds = compareList.map(id => funds.find(f => f.id === id)).filter(Boolean) as MutualFund[];
 
   const toggleAMC = (amc: string) => setSelectedAMCs(prev => prev.includes(amc) ? prev.filter(a => a !== amc) : [...prev, amc]);
   const toggleCategory = (cat: string) => setSelectedCategories(prev => prev.includes(cat) ? prev.filter(c => c !== cat) : [...prev, cat]);
