@@ -1,3 +1,4 @@
+screener.ts code
 import { mutualFunds } from "../data/mutualFunds";
 
 export const onRequestGet = async ({ request }: { request: Request }) => {
@@ -69,3 +70,4 @@ export const onRequestGet = async ({ request }: { request: Request }) => {
     );
   }
 };
+give me proper code after addtion and deletion so i can copy and paste
