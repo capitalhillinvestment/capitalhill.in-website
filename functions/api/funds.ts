@@ -4,15 +4,23 @@ export const onRequestGet = async () => {
       id: "1",
       name: "HDFC Top 100 Fund",
       amc: "HDFC Mutual Fund",
-      category: "Large Cap",
+      category: "Equity",
+      subCategory: "Large Cap",
       nav: 100.25,
-    },
-    {
-      id: "2",
-      name: "ICICI Prudential Bluechip Fund",
-      amc: "ICICI Prudential Mutual Fund",
-      category: "Large Cap",
-      nav: 85.40,
-    },
+      navDate: "2026-06-21",
+      returns: {
+        oneYear: 12.5,
+        threeYear: 14.2,
+        fiveYear: 16.1,
+      },
+      aum: 35000,
+      expenseRatio: 1.2,
+      riskLevel: "Moderately High",
+      benchmark: "Nifty 100 TRI",
+      minInvestment: 100,
+      fundManager: "Sample Manager",
+      launchDate: "2010-01-01",
+      rating: 5,
+    }
   ]);
 };
