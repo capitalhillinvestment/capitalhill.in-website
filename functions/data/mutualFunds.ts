@@ -144,7 +144,7 @@ const mutualFunds: MutualFund[] = [
   createFund('ICICI Prudential Liquid Fund', 'ICICI Prudential', 'Liquid', 4234.56, 7.05, 6.72, 6.48, 38540, 0.22, 'Low', 'CRISIL Liquid Fund Index', 20000, 'Dwijendra Singh', '06-May-1999', 5),
 ];
 
-export default mutualFunds;
+export { mutualFunds };
 
 export const amcOptions = amcs.sort();
 export const categoryOptions = categories.sort();
