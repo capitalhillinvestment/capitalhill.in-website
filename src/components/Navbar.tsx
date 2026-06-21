@@ -80,7 +80,7 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
             </div>
           </button>
 
-       <nav className="flex items-center gap-1">
+       <nav className="hidden lg:flex items-center gap-1">
          <div className="flex items-center gap-1">
   {[
     { label: 'Home', page: 'home' },
