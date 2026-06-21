@@ -1,5 +1,4 @@
-import { mutualFunds } from '../data/mutualFunds';
-
+import { mutualFunds } from '../data/mutualfunds';
 export async function onRequestGet() {
   return Response.json(mutualFunds);
 }
