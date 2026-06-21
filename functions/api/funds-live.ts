@@ -3,38 +3,53 @@ import { mapNavToFunds } from "../utils/mapNav";
 
 export async function onRequestGet() {
   try {
-    const res = await fetch(
+    const response = await fetch(
       "https://www.amfiindia.com/spages/NAVAll.txt"
     );
 
-    const text = await res.text();
+    const text = await response.text();
+
     const lines = text.split("\n");
 
-    const amfiNav = [];
+    const amfiNav: any[] = [];
 
     for (const line of lines) {
       const parts = line.split(";");
 
-      if (parts.length > 5 && parts[3] && parts[4]) {
+      if (
+        parts.length > 5 &&
+        parts[0] &&
+        parts[3] &&
+        parts[4]
+      ) {
         amfiNav.push({
-          schemeName: parts[3],
-          nav: parseFloat(parts[4]),
-          date: parts[5],
+          schemeCode: parts[0].trim(),
+          schemeName: parts[3].trim(),
+          nav: Number(parts[4]),
+          date: parts[5]?.trim(),
         });
       }
     }
 
-    const updatedFunds = mapNavToFunds(mutualFunds, amfiNav);
+    const updatedFunds = mapNavToFunds(
+      mutualFunds,
+      amfiNav
+    );
 
     return Response.json({
       success: true,
       updatedAt: new Date().toISOString(),
+      totalFunds: updatedFunds.length,
+      totalAmfiRecords: amfiNav.length,
       data: updatedFunds,
     });
-
-  } catch (err: any) {
+  } catch (error: any) {
     return Response.json(
-      { success: false, error: err.message },
+      {
+        success: false,
+        error:
+          error.message || "Failed to fetch AMFI NAV",
+      },
       { status: 500 }
     );
   }
