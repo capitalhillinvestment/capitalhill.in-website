@@ -1,6 +1,0 @@
-export async function onRequestGet() {
-  return Response.json({
-    status: "working",
-    endpoint: "search-funds"
-  });
-}
