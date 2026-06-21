@@ -70,4 +70,4 @@ export const onRequestGet = async ({ request }: { request: Request }) => {
     );
   }
 };
-give me proper code after addtion and deletion so i can copy and paste
+
