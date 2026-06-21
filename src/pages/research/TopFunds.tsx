@@ -78,31 +78,7 @@ export default function TopFunds({ onNavigate }: TopFundsProps) {
   grouping,
   selectedCategory
 ]);
-    let funds = [...funds];
-
-    // Filter by category if needed
-    if (grouping === 'category' && selectedCategory) {
-      funds = funds.filter(f => f.category === selectedCategory);
-    }
-
-    // Sort by return
-    funds.sort((a, b) => b.returns[timeframe] - a.returns[timeframe]);
-
-    // Take top funds
-    if (grouping === 'all') {
-      return funds.slice(0, 10);
-    }
-
-    // Group by category - return top 3 per category
-    const categoryMap = new Map<string, MutualFund[]>();
-    for (const fund of funds) {
-      const cat = fund.category;
-      if (!categoryMap.has(cat)) categoryMap.set(cat, []);
-      const catFunds = categoryMap.get(cat)!;
-      if (catFunds.length < 3) catFunds.push(fund);
-    }
-    return Array.from(categoryMap.entries()).flatMap(([cat, funds]) => funds.map(f => ({ ...f, category: cat })));
-  }, [timeframe, grouping, selectedCategory]);
+  
 
   const timeframeLabels = {
     oneYear: '1 Year',
