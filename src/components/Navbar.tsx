@@ -14,7 +14,7 @@ const products = [
   { label: 'PMS', page: 'pms' },
   { label: 'AIF', page: 'aif' },
   { label: 'IPO', page: 'ipo' },
-  { label: 'NFO', page: 'nfo' },
+  { label: 'NFO', page: 'nfo' }
 ];
 
 const research = [
@@ -251,3 +251,4 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
       )}
       </header>
   );
+}
