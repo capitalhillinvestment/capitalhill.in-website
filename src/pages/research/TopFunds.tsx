@@ -1,6 +1,6 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Trophy, Star, Medal, BarChart2, Filter } from 'lucide-react';
-import mutualFunds, { MutualFund, categoryOptions, riskColors } from '../../data/mutualFunds';
+import {MutualFund, categoryOptions, riskColors} from '../../data/mutualFunds';
 
 interface TopFundsProps { onNavigate: (page: string) => void; }
 
@@ -21,14 +21,64 @@ export default function TopFunds({ onNavigate }: TopFundsProps) {
   const [timeframe, setTimeframe] = useState<Timeframe>('oneYear');
   const [grouping, setGrouping] = useState<Grouping>('all');
   const [selectedCategory, setSelectedCategory] = useState<string>('');
+  const [funds, setFunds] = useState<MutualFund[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const nav = (page: string) => {
+   nav = (page: string) => {
     onNavigate(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const topFunds = useMemo(() => {
-    let funds = [...mutualFunds];
+  let filteredFunds = [...funds];
+
+  if (grouping === 'category' && selectedCategory) {
+    filteredFunds = filteredFunds.filter(
+      f => f.category === selectedCategory
+    );
+  }
+
+  filteredFunds.sort(
+    (a, b) =>
+      b.returns[timeframe] -
+      a.returns[timeframe]
+  );
+
+  if (grouping === 'all') {
+    return filteredFunds.slice(0, 10);
+  }
+
+  const categoryMap = new Map<
+    string,
+    MutualFund[]
+  >();
+
+  for (const fund of filteredFunds) {
+    const cat = fund.category;
+
+    if (!categoryMap.has(cat)) {
+      categoryMap.set(cat, []);
+    }
+
+    const catFunds =
+      categoryMap.get(cat)!;
+
+    if (catFunds.length < 3) {
+      catFunds.push(fund);
+    }
+  }
+
+  return Array.from(
+    categoryMap.entries()
+  ).flatMap(([_, funds]) => funds);
+
+}, [
+  funds,
+  timeframe,
+  grouping,
+  selectedCategory
+]);
+    let funds = [...funds];
 
     // Filter by category if needed
     if (grouping === 'category' && selectedCategory) {
@@ -64,6 +114,13 @@ export default function TopFunds({ onNavigate }: TopFundsProps) {
     return fund.returns[timeframe];
   };
 
+if (loading) {
+  return (
+    <div className="pt-24 text-center">
+      Loading Top Funds...
+    </div>
+  );
+}
   return (
     <div className="pt-16 min-h-screen bg-slate-50">
       {/* Header */}
@@ -177,8 +234,8 @@ export default function TopFunds({ onNavigate }: TopFundsProps) {
           ) : (
             /* By Category - Top 3 per category */
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {categoryOptions.map(category => {
-                const catFunds = mutualFunds.filter(f => f.category === category).sort((a, b) => b.returns[timeframe] - a.returns[timeframe]).slice(0, 3);
+              {categoryOptions.map(category => { const catFunds = funds
+                .filter(f => f.category === category).sort((a, b) => b.returns[timeframe] - a.returns[timeframe]).slice(0, 3);
                 if (selectedCategory && category !== selectedCategory) return null;
                 if (catFunds.length === 0) return null;
 
