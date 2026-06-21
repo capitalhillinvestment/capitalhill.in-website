@@ -1,4 +1,4 @@
-import mutualFunds from "../data/mutualFunds";
+import { mutualFunds } from "../data/mutualFunds";
 import { mapNavToFunds } from "../utils/mapNav";
 
 export async function onRequestGet() {
