@@ -1,14 +1,31 @@
-export function mapNavToFunds(mutualFunds: any[], amfiNav: any[]) {
-  return mutualFunds.map((fund) => {
-    const match = amfiNav.find((n: any) =>
-      n.schemeName?.toLowerCase().includes(fund.name.toLowerCase()) ||
-      fund.name.toLowerCase().includes(n.schemeName?.toLowerCase() || "")
+import { MutualFund } from "../data/mutualFunds";
+
+interface AmfiNav {
+  schemeCode: string;
+  schemeName: string;
+  nav: number;
+  date: string;
+}
+
+export function mapNavToFunds(
+  funds: MutualFund[],
+  amfiNav: AmfiNav[]
+) {
+  return funds.map((fund) => {
+    const navMatch = amfiNav.find(
+      (nav) =>
+        fund.amfiCode &&
+        nav.schemeCode === fund.amfiCode
     );
+
+    if (!navMatch) {
+      return fund;
+    }
 
     return {
       ...fund,
-      nav: match ? match.nav : fund.nav,
-      navDate: match ? match.date : fund.navDate,
+      nav: navMatch.nav,
+      navDate: navMatch.date,
     };
   });
 }
