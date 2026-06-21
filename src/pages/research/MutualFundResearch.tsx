@@ -1,10 +1,11 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import {
   BarChart2, Search, Filter, X, Star, TrendingUp, ChevronDown,
   Check, FileText, Download, Printer, ShoppingCart, Info,
   RefreshCw, Layers, AlertCircle,
 } from 'lucide-react';
 import mutualFunds, { MutualFund, amcOptions, categoryOptions, riskColors, riskBarColors } from '../../data/mutualFunds';
+import { getFunds } from '../../services/fundApi';
 
 declare global {
   interface Window {
@@ -291,7 +292,23 @@ export default function MutualFundResearch({ onNavigate }: MutualFundResearchPro
   const [showFilters, setShowFilters] = useState(false);
   const [compareList, setCompareList] = useState<string[]>([]);
   const [showComparison, setShowComparison] = useState(false);
+const [funds, setFunds] = useState<MutualFund[]>([]);
+const [loading, setLoading] = useState(true);
 
+useEffect(() => {
+  async function loadFunds() {
+    try {
+      const data = await getFunds();
+      setFunds(data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  loadFunds();
+}, []);
   const nav = (page: string) => {
     onNavigate(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
