@@ -314,14 +314,14 @@ useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const filteredFunds = useMemo(() => {
-    return mutualFunds.filter(f => {
-      const matchSearch = search === '' || f.name.toLowerCase().includes(search.toLowerCase()) || f.amc.toLowerCase().includes(search.toLowerCase());
-      const matchAMC = selectedAMCs.length === 0 || selectedAMCs.includes(f.amc);
-      const matchCategory = selectedCategories.length === 0 || selectedCategories.includes(f.category);
-      return matchSearch && matchAMC && matchCategory;
-    });
-  }, [search, selectedAMCs, selectedCategories]);
+ const filteredFunds = useMemo(() => {
+  return funds.filter(f => {
+    const matchSearch = search === '' || f.name.toLowerCase().includes(search.toLowerCase()) || f.amc.toLowerCase().includes(search.toLowerCase());
+    const matchAMC = selectedAMCs.length === 0 || selectedAMCs.includes(f.amc);
+    const matchCategory = selectedCategories.length === 0 || selectedCategories.includes(f.category);
+    return matchSearch && matchAMC && matchCategory;
+  });
+}, [funds, search, selectedAMCs, selectedCategories]);
 
   const toggleCompare = (fundId: string) => {
     if (compareList.includes(fundId)) {
@@ -388,7 +388,7 @@ useEffect(() => {
           )}
 
           <div className="mt-3 text-xs text-slate-500">
-            Showing {filteredFunds.length} of {mutualFunds.length} funds
+           Showing {filteredFunds.length} of {funds.length} funds
             {selectedAMCs.length > 0 && ` • AMC: ${selectedAMCs.join(', ')}`}
             {selectedCategories.length > 0 && ` • Category: ${selectedCategories.join(', ')}`}
           </div>
