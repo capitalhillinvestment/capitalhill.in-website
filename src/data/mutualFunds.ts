@@ -61,7 +61,6 @@ function createFund(
 ): MutualFund {
   return {
     id: `MF${String(fundId++).padStart(3, '0')}`,
-    amfiCode,
     name,
     amc,
     category,
