@@ -1,26 +1,61 @@
 import { mutualFunds } from "../data/mutualFunds";
 
 export async function onRequestGet({ request }: any) {
-  const url = new URL(request.url);
+  try {
+    const url = new URL(request.url);
 
-  const ids = url.searchParams.get("ids");
+    const ids = url.searchParams.get("ids");
 
-  if (!ids) {
-    return Response.json({
+    if (!ids) {
+      return Response.json(
+        {
+          success: false,
+          message: "Pass fund ids",
+        },
+        { status: 400 }
+      );
+    }
+
+    const fundIds = ids
+      .split(",")
+      .map((id) => id.trim());
+
+  if (fundIds.length > 10) {
+  return Response.json(
+    {
       success: false,
-      message: "Pass fund ids",
-    });
-  }
-
-  const fundIds = ids.split(",");
-
-  const funds = mutualFunds.filter(
-    (f) => fundIds.includes(f.id)
+      message: "Maximum 10 funds allowed",
+    },
+    { status: 400 }
   );
+}
 
-  return Response.json({
-    success: true,
-    count: funds.length,
-    data: funds,
-  });
+    const funds = mutualFunds.filter((fund) =>
+      fundIds.includes(fund.id)
+    );
+
+    if (funds.length === 0) {
+      return Response.json(
+        {
+          success: false,
+          message: "No matching funds found",
+        },
+        { status: 404 }
+      );
+    }
+
+    return Response.json({
+      success: true,
+      count: funds.length,
+      data: funds,
+    });
+  } catch (error: any) {
+    return Response.json(
+      {
+        success: false,
+        error: error.message || "Internal Server Error",
+      },
+      { status: 500 }
+    );
+  }
 }
