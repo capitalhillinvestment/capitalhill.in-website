@@ -1,4 +1,4 @@
-import mutualFunds from "../data/mutualFunds";
+import { mutualFunds } from "../data/mutualFunds";
 import { calculateFundScore } from "../engine/fundScore";
 
 export async function onRequestGet() {
