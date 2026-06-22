@@ -126,12 +126,27 @@ const filteredFunds = useMemo(() => {
       minRating === 0 ||
       f.rating >= minRating;
 
+    const matchReturn1Y =
+      minReturn1Y === '' ||
+      f.returns.oneYear >= minReturn1Y;
+
+    const matchReturn3Y =
+      minReturn3Y === '' ||
+      f.returns.threeYear >= minReturn3Y;
+
+    const matchReturn5Y =
+      minReturn5Y === '' ||
+      f.returns.fiveYear >= minReturn5Y;
+
     return (
       matchSearch &&
       matchAMC &&
       matchCategory &&
       matchRisk &&
-      matchRating
+      matchRating &&
+      matchReturn1Y &&
+      matchReturn3Y &&
+      matchReturn5Y
     );
   });
 }, [
@@ -141,6 +156,9 @@ const filteredFunds = useMemo(() => {
   selectedCategories,
   selectedRisks,
   minRating,
+  minReturn1Y,
+  minReturn3Y,
+  minReturn5Y,
 ]);
   
   const resetFilters = () => {
