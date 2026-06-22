@@ -142,6 +142,14 @@ const filteredFunds = useMemo(() => {
       f.aum >= minAUM &&
       f.aum <= maxAUM;
 
+    const matchExpense =
+      maxExpense === '' ||
+      f.expenseRatio <= maxExpense;
+
+    const matchSIP =
+      maxMinSIP === '' ||
+      f.minInvestment <= maxMinSIP;
+
     return (
       matchSearch &&
       matchAMC &&
@@ -151,7 +159,9 @@ const filteredFunds = useMemo(() => {
       matchReturn1Y &&
       matchReturn3Y &&
       matchReturn5Y &&
-      matchAUM
+      matchAUM &&
+      matchExpense &&
+      matchSIP
     );
   });
 }, [
@@ -166,8 +176,9 @@ const filteredFunds = useMemo(() => {
   minReturn5Y,
   minAUM,
   maxAUM,
+  maxExpense,
+  maxMinSIP,
 ]);
-  
   const resetFilters = () => {
     setSearch('');
     setSelectedAMCs([]);
