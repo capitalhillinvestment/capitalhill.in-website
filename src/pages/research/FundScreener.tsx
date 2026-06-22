@@ -103,40 +103,9 @@ useEffect(() => {
 console.log("Funds loaded:", funds.length);
 console.log(funds);
   
-  const filteredFunds = useMemo(() => {
-    let result = funds.filter(f => {
-      // Search
-      if (search && !f.name.toLowerCase().includes(search.toLowerCase()) && !f.amc.toLowerCase().includes(search.toLowerCase())) return false;
-
-      // AMC
-      if (selectedAMCs.length > 0 && !selectedAMCs.includes(f.amc)) return false;
-
-      // Category
-      if (selectedCategories.length > 0 && !selectedCategories.includes(f.category)) return false;
-
-      // Risk
-      if (selectedRisks.length > 0 && !selectedRisks.includes(f.riskLevel)) return false;
-
-      // Rating
-      if (f.rating < minRating) return false;
-
-      // AUM
-      if (f.aum < minAUM || f.aum > maxAUM) return false;
-
-      // Returns
-      if (minReturn1Y !== '' && f.returns.oneYear < minReturn1Y) return false;
-      if (minReturn3Y !== '' && f.returns.threeYear < minReturn3Y) return false;
-      if (minReturn5Y !== '' && f.returns.fiveYear < minReturn5Y) return false;
-
-      // Expense Ratio
-      if (maxExpense !== '' && f.expenseRatio > maxExpense) return false;
-
-      // Min SIP
-      if (maxMinSIP !== '' && f.minInvestment > maxMinSIP) return false;
-
-      return true;
-    });
-
+const filteredFunds = useMemo(() => {
+  return funds;
+}, [funds]);
     // Sort
     result.sort((a, b) => {
       const keys = sortBy.split('.');
@@ -150,7 +119,19 @@ console.log(funds);
       const numB = typeof valB === 'number' ? valB : 0;
       return sortOrder === 'desc' ? numB - numA : numA - numB;
     });
+console.log("Filtered Funds:", result.length);
 
+if (result.length === 0) {
+  console.log("Search:", search);
+  console.log("Selected AMC:", selectedAMCs);
+  console.log("Selected Category:", selectedCategories);
+  console.log("Selected Risk:", selectedRisks);
+  console.log("Min Rating:", minRating);
+  console.log("AUM Range:", minAUM, maxAUM);
+  console.log("Expense:", maxExpense);
+  console.log("Min SIP:", maxMinSIP);
+}
+    
     return result;
   }, [search, selectedAMCs, selectedCategories, selectedRisks, minRating, minAUM, maxAUM, minReturn1Y, minReturn3Y, minReturn5Y, maxExpense, maxMinSIP, sortBy, sortOrder]);
 
