@@ -76,7 +76,12 @@ useEffect(() => {
   async function loadFunds() {
     try {
       const res = await fetch('/api/funds');
+
+      console.log("Response status:", res.status);
+
       const data = await res.json();
+
+      console.log("API Response:", data);
 
       if (data.success) {
         setFunds(data.data);
