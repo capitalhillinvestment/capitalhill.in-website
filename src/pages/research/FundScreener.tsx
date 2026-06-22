@@ -106,17 +106,9 @@ console.log(funds);
 const filteredFunds = useMemo(() => {
   return funds.filter((f) => {
     const matchSearch =
-      search === '' ||
+      search === "" ||
       f.name.toLowerCase().includes(search.toLowerCase()) ||
       f.amc.toLowerCase().includes(search.toLowerCase());
-
-    const matchAMC =
-      selectedAMCs.length === 0 ||
-      selectedAMCs.includes(f.amc);
-
-    return matchSearch && matchAMC;
-  });
-}, [funds, search, selectedAMCs]);
 
     const matchAMC =
       selectedAMCs.length === 0 ||
