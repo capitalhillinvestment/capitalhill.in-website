@@ -105,48 +105,51 @@ console.log(funds);
   
 const filteredFunds = useMemo(() => {
   return funds.filter((f) => {
+    const searchText = search.toLowerCase();
+
     const matchSearch =
-      search === "" ||
-      f.name.toLowerCase().includes(search.toLowerCase()) ||
-      f.amc.toLowerCase().includes(search.toLowerCase());
+      !search ||
+      f.name.toLowerCase().includes(searchText) ||
+      f.amc.toLowerCase().includes(searchText);
 
     const matchAMC =
-      selectedAMCs.length === 0 ||
-      selectedAMCs.includes(f.amc);
+      selectedAMCs.length === 0 || selectedAMCs.includes(f.amc);
 
     const matchCategory =
-      selectedCategories.length === 0 ||
-      selectedCategories.includes(f.category);
+      selectedCategories.length === 0 || selectedCategories.includes(f.category);
 
     const matchRisk =
-      selectedRisks.length === 0 ||
-      selectedRisks.includes(f.riskLevel);
+      selectedRisks.length === 0 || selectedRisks.includes(f.riskLevel);
 
     const matchRating =
-      minRating === 0 ||
-      f.rating >= minRating;
+      minRating === 0 || f.rating >= minRating;
 
-    const matchReturn1Y =
-      minReturn1Y === '' ||
-      f.returns.oneYear >= minReturn1Y;
-
-    const matchReturn3Y =
-      minReturn3Y === '' ||
-      f.returns.threeYear >= minReturn3Y;
-
-    const matchReturn5Y =
-      minReturn5Y === '' ||
-      f.returns.fiveYear >= minReturn5Y;
+    const aumMax =
+      maxAUM === '' ? Infinity : Number(maxAUM);
 
     const matchAUM =
-      f.aum >= minAUM &&
-      f.aum <= maxAUM;
+      f.aum >= Number(minAUM || 0) && f.aum <= aumMax;
 
-  const matchExpense =
-  maxExpense === '' || f.expenseRatio <= Number(maxExpense);
+    const matchReturn1Y =
+      minReturn1Y === '' || f.returns.oneYear >= Number(minReturn1Y);
 
-  const matchSIP =
-  maxMinSIP === '' || f.minInvestment <= Number(maxMinSIP);
+    const matchReturn3Y =
+      minReturn3Y === '' || f.returns.threeYear >= Number(minReturn3Y);
+
+    const matchReturn5Y =
+      minReturn5Y === '' || f.returns.fiveYear >= Number(minReturn5Y);
+
+    const expenseLimit =
+      maxExpense === '' ? Infinity : Number(maxExpense);
+
+    const matchExpense =
+      f.expenseRatio <= expenseLimit;
+
+    const sipLimit =
+      maxMinSIP === '' ? Infinity : Number(maxMinSIP);
+
+    const matchSIP =
+      f.minInvestment <= sipLimit;
 
     return (
       matchSearch &&
@@ -154,10 +157,10 @@ const filteredFunds = useMemo(() => {
       matchCategory &&
       matchRisk &&
       matchRating &&
+      matchAUM &&
       matchReturn1Y &&
       matchReturn3Y &&
       matchReturn5Y &&
-      matchAUM &&
       matchExpense &&
       matchSIP
     );
@@ -169,11 +172,11 @@ const filteredFunds = useMemo(() => {
   selectedCategories,
   selectedRisks,
   minRating,
+  minAUM,
+  maxAUM,
   minReturn1Y,
   minReturn3Y,
   minReturn5Y,
-  minAUM,
-  maxAUM,
   maxExpense,
   maxMinSIP,
 ]);
