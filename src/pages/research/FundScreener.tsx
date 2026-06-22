@@ -165,6 +165,55 @@ const filteredFunds = useMemo(() => {
       matchSIP
     );
   });
+  result.sort((a, b) => {
+    let valA: number = 0;
+    let valB: number = 0;
+
+    switch (sortBy) {
+      case 'returns.oneYear':
+        valA = a.returns.oneYear;
+        valB = b.returns.oneYear;
+        break;
+
+      case 'returns.threeYear':
+        valA = a.returns.threeYear;
+        valB = b.returns.threeYear;
+        break;
+
+      case 'returns.fiveYear':
+        valA = a.returns.fiveYear;
+        valB = b.returns.fiveYear;
+        break;
+
+      case 'aum':
+        valA = a.aum;
+        valB = b.aum;
+        break;
+
+      case 'nav':
+        valA = a.nav;
+        valB = b.nav;
+        break;
+
+      case 'expenseRatio':
+        valA = a.expenseRatio;
+        valB = b.expenseRatio;
+        break;
+
+      case 'rating':
+        valA = a.rating;
+        valB = b.rating;
+        break;
+
+      default:
+        valA = a.returns.oneYear;
+        valB = b.returns.oneYear;
+    }
+
+    return sortOrder === 'desc' ? valB - valA : valA - valB;
+  });
+
+  return result;
 }, [
   funds,
   search,
@@ -179,6 +228,8 @@ const filteredFunds = useMemo(() => {
   minReturn5Y,
   maxExpense,
   maxMinSIP,
+  sortBy,
+  sortOrder,
 ]);
   const resetFilters = () => {
     setSearch('');
