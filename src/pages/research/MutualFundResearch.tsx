@@ -315,11 +315,26 @@ useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
- const filteredFunds = useMemo(() => {
-  return funds.filter(f => {
-    const matchSearch = search === '' || f.name.toLowerCase().includes(search.toLowerCase()) || f.amc.toLowerCase().includes(search.toLowerCase());
-    const matchAMC = selectedAMCs.length === 0 || selectedAMCs.includes(f.amc);
-    const matchCategory = selectedCategories.length === 0 || selectedCategories.includes(f.category);
+const filteredFunds = useMemo(() => {
+  console.log("Funds State:", funds.length);
+  console.log("Search:", search);
+  console.log("AMC Filters:", selectedAMCs);
+  console.log("Category Filters:", selectedCategories);
+
+  return (funds || []).filter(f => {
+    const matchSearch =
+      search === '' ||
+      f.name.toLowerCase().includes(search.toLowerCase()) ||
+      f.amc.toLowerCase().includes(search.toLowerCase());
+
+    const matchAMC =
+      selectedAMCs.length === 0 ||
+      selectedAMCs.includes(f.amc);
+
+    const matchCategory =
+      selectedCategories.length === 0 ||
+      selectedCategories.includes(f.category);
+
     return matchSearch && matchAMC && matchCategory;
   });
 }, [funds, search, selectedAMCs, selectedCategories]);
