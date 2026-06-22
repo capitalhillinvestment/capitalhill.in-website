@@ -122,11 +122,16 @@ const filteredFunds = useMemo(() => {
       selectedRisks.length === 0 ||
       selectedRisks.includes(f.riskLevel);
 
+    const matchRating =
+      minRating === 0 ||
+      f.rating >= minRating;
+
     return (
       matchSearch &&
       matchAMC &&
       matchCategory &&
-      matchRisk
+      matchRisk &&
+      matchRating
     );
   });
 }, [
@@ -135,6 +140,7 @@ const filteredFunds = useMemo(() => {
   selectedAMCs,
   selectedCategories,
   selectedRisks,
+  minRating,
 ]);
   
   const resetFilters = () => {
