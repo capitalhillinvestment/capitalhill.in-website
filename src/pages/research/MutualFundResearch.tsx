@@ -4,7 +4,7 @@ import {
   Check, FileText, Download, Printer, ShoppingCart, Info,
   RefreshCw, Layers, AlertCircle,
 } from 'lucide-react';
-import mutualFunds, { MutualFund, amcOptions, categoryOptions, riskColors, riskBarColors } from '../../data/mutualFunds';
+import , { MutualFund, amcOptions, categoryOptions, riskColors, riskBarColors } from '../../data/mutualFunds';
 import { getFunds } from '../../services/fundApi';
 
 declare global {
@@ -397,6 +397,17 @@ useEffect(() => {
 
       <section className="py-8 bg-slate-50 min-h-screen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
+
+          if (loading) {
+  return (
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+        <p className="text-slate-600">Loading mutual funds...</p>
+      </div>
+    </div>
+  );
+}
           {filteredFunds.length === 0 ? (
             <div className="text-center py-20">
               <AlertCircle className="w-16 h-16 text-slate-300 mx-auto mb-4" />
