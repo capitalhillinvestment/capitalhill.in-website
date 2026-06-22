@@ -7,5 +7,9 @@ export async function onRequestGet() {
     score: calculateFundScore(fund),
   }));
 
-  return Response.json(enriched);
+  return Response.json({
+  success: true,
+  count: mutualFunds.length,
+  data: mutualFunds
+});
 }
