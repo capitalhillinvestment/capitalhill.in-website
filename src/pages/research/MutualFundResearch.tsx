@@ -309,16 +309,7 @@ useEffect(() => {
 
   loadFunds();
 }, []);
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-center">
-          <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-4" />
-          <p>Loading funds...</p>
-        </div>
-      </div>
-    );
-  }
+ 
   const nav = (page: string) => {
     onNavigate(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -348,6 +339,17 @@ useEffect(() => {
 
   const toggleAMC = (amc: string) => setSelectedAMCs(prev => prev.includes(amc) ? prev.filter(a => a !== amc) : [...prev, amc]);
   const toggleCategory = (cat: string) => setSelectedCategories(prev => prev.includes(cat) ? prev.filter(c => c !== cat) : [...prev, cat]);
+  
+  if (loading) {
+  return (
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+        <p className="text-slate-600">Loading mutual funds...</p>
+      </div>
+    </div>
+  );
+}
 
   return (
     <div className="pt-16 pb-20 print:pb-0">
