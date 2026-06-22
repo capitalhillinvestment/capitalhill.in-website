@@ -142,13 +142,11 @@ const filteredFunds = useMemo(() => {
       f.aum >= minAUM &&
       f.aum <= maxAUM;
 
-    const matchExpense =
-      maxExpense === '' ||
-      f.expenseRatio <= maxExpense;
+  const matchExpense =
+  maxExpense === '' || f.expenseRatio <= Number(maxExpense);
 
-    const matchSIP =
-      maxMinSIP === '' ||
-      f.minInvestment <= maxMinSIP;
+  const matchSIP =
+  maxMinSIP === '' || f.minInvestment <= Number(maxMinSIP);
 
     return (
       matchSearch &&
