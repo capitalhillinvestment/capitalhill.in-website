@@ -118,9 +118,24 @@ const filteredFunds = useMemo(() => {
       selectedCategories.length === 0 ||
       selectedCategories.includes(f.category);
 
-    return matchSearch && matchAMC && matchCategory;
+    const matchRisk =
+      selectedRisks.length === 0 ||
+      selectedRisks.includes(f.riskLevel);
+
+    return (
+      matchSearch &&
+      matchAMC &&
+      matchCategory &&
+      matchRisk
+    );
   });
-}, [funds, search, selectedAMCs, selectedCategories]);
+}, [
+  funds,
+  search,
+  selectedAMCs,
+  selectedCategories,
+  selectedRisks,
+]);
   
   const resetFilters = () => {
     setSearch('');
