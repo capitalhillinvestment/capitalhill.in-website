@@ -4,7 +4,7 @@ import {
   Check, FileText, Download, Printer, ShoppingCart, Info,
   RefreshCw, Layers, AlertCircle,
 } from 'lucide-react';
-import , { MutualFund, amcOptions, categoryOptions, riskColors, riskBarColors } from '../../data/mutualFunds';
+import { MutualFund, amcOptions, categoryOptions, riskColors, riskBarColors } from '../../data/mutualFunds';
 import { getFunds } from '../../services/fundApi';
 
 declare global {
