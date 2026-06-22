@@ -106,35 +106,7 @@ console.log(funds);
 const filteredFunds = useMemo(() => {
   return funds;
 }, [funds]);
-    // Sort
-    result.sort((a, b) => {
-      const keys = sortBy.split('.');
-      let valA: unknown = a;
-      let valB: unknown = b;
-      for (const k of keys) {
-        valA = (valA as Record<string, unknown>)?.[k];
-        valB = (valB as Record<string, unknown>)?.[k];
-      }
-      const numA = typeof valA === 'number' ? valA : 0;
-      const numB = typeof valB === 'number' ? valB : 0;
-      return sortOrder === 'desc' ? numB - numA : numA - numB;
-    });
-console.log("Filtered Funds:", result.length);
-
-if (result.length === 0) {
-  console.log("Search:", search);
-  console.log("Selected AMC:", selectedAMCs);
-  console.log("Selected Category:", selectedCategories);
-  console.log("Selected Risk:", selectedRisks);
-  console.log("Min Rating:", minRating);
-  console.log("AUM Range:", minAUM, maxAUM);
-  console.log("Expense:", maxExpense);
-  console.log("Min SIP:", maxMinSIP);
-}
-    
-    return result;
-  }, [search, selectedAMCs, selectedCategories, selectedRisks, minRating, minAUM, maxAUM, minReturn1Y, minReturn3Y, minReturn5Y, maxExpense, maxMinSIP, sortBy, sortOrder]);
-
+  
   const resetFilters = () => {
     setSearch('');
     setSelectedAMCs([]);
