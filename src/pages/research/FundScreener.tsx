@@ -102,21 +102,17 @@ useEffect(() => {
   };
 console.log("Funds loaded:", funds.length);
 console.log(funds);
-  
-const filteredFunds = useMemo(() => {
-  return funds.filter(f => {
-    const matchSearch =
+  const filteredFunds = useMemo(() => {
+  return funds.filter((f) => {
+    return (
       search === '' ||
       f.name.toLowerCase().includes(search.toLowerCase()) ||
-      f.amc.toLowerCase().includes(search.toLowerCase());
-
-    const matchAMC =
-      selectedAMCs.length === 0 ||
-      selectedAMCs.includes(f.amc);
-
-    return matchSearch && matchAMC;
+      f.amc.toLowerCase().includes(search.toLowerCase())
+    );
   });
-}, [funds, search, selectedAMCs]);
+}, [funds, search]);
+  console.log("Search:", search);
+console.log("Filtered Funds:", filteredFunds.length);
   
   const resetFilters = () => {
     setSearch('');
