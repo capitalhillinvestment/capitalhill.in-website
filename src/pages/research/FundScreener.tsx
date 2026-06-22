@@ -138,6 +138,10 @@ const filteredFunds = useMemo(() => {
       minReturn5Y === '' ||
       f.returns.fiveYear >= minReturn5Y;
 
+    const matchAUM =
+      f.aum >= minAUM &&
+      f.aum <= maxAUM;
+
     return (
       matchSearch &&
       matchAMC &&
@@ -146,7 +150,8 @@ const filteredFunds = useMemo(() => {
       matchRating &&
       matchReturn1Y &&
       matchReturn3Y &&
-      matchReturn5Y
+      matchReturn5Y &&
+      matchAUM
     );
   });
 }, [
@@ -159,6 +164,8 @@ const filteredFunds = useMemo(() => {
   minReturn1Y,
   minReturn3Y,
   minReturn5Y,
+  minAUM,
+  maxAUM,
 ]);
   
   const resetFilters = () => {
