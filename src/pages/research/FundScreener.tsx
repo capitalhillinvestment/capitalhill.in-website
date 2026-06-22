@@ -95,7 +95,9 @@ useEffect(() => {
     onNavigate(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
-
+console.log("Funds loaded:", funds.length);
+console.log(funds);
+  
   const filteredFunds = useMemo(() => {
     let result = funds.filter(f => {
       // Search
