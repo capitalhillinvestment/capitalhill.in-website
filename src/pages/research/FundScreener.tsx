@@ -1,6 +1,14 @@
-import { useState, useMemo } from 'react';
+
 import { Filter, RotateCcw, Search, Star, TrendingUp, AlertCircle } from 'lucide-react';
-import mutualFunds, { amcOptions, categoryOptions, riskColors, riskBarColors } from '../../data/mutualFunds';
+import { useState, useMemo, useEffect } from 'react';
+
+import {
+  MutualFund,
+  amcOptions,
+  categoryOptions,
+  riskColors,
+  riskBarColors,
+} from '../../data/mutualFunds';
 
 interface FundScreenerProps { onNavigate: (page: string) => void; }
 
@@ -28,7 +36,8 @@ function StarRating({ rating }: { rating: number }) {
 
 export default function FundScreener({ onNavigate }: FundScreenerProps) {
   const [showFilters, setShowFilters] = useState(true);
-
+const [funds, setFunds] = useState<MutualFund[]>([]);
+const [loading, setLoading] = useState(true);
   // Search
   const [search, setSearch] = useState('');
 
@@ -63,13 +72,32 @@ export default function FundScreener({ onNavigate }: FundScreenerProps) {
   const [sortBy, setSortBy] = useState<'returns.oneYear' | 'returns.threeYear' | 'returns.fiveYear' | 'aum' | 'nav' | 'expenseRatio' | 'rating'>('returns.oneYear');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
 
+useEffect(() => {
+  async function loadFunds() {
+    try {
+      const res = await fetch('/api/funds');
+      const data = await res.json();
+
+      if (data.success) {
+        setFunds(data.data);
+      }
+    } catch (err) {
+      console.error('Failed to load funds', err);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  loadFunds();
+}, []);
+  
   const nav = (page: string) => {
     onNavigate(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const filteredFunds = useMemo(() => {
-    let result = mutualFunds.filter(f => {
+    let result = funds.filter(f => {
       // Search
       if (search && !f.name.toLowerCase().includes(search.toLowerCase()) && !f.amc.toLowerCase().includes(search.toLowerCase())) return false;
 
@@ -142,7 +170,14 @@ export default function FundScreener({ onNavigate }: FundScreenerProps) {
   const toggleArrayItem = (arr: string[], setArr: (v: string[]) => void, item: string) => {
     setArr(arr.includes(item) ? arr.filter(i => i !== item) : [...arr, item]);
   };
-
+if (loading) {
+  return (
+    <div className="pt-24 text-center">
+      Loading Fund Screener...
+    </div>
+  );
+}
+  
   return (
     <div className="pt-16 min-h-screen bg-slate-50">
       {/* Header */}
