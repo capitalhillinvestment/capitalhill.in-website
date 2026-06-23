@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BarChart2, Plus, X, Star, TrendingUp, Download, Printer, Info, Layers } from 'lucide-react';
 import {
   MutualFund,
@@ -40,11 +40,7 @@ useEffect(() => {
       setLoading(false);
     });
 }, []);
-  const [funds, setFunds] =
-  useState<MutualFund[]>([]);
 
-  const [loading, setLoading] =
-  useState(true);
 
   const nav = (page: string) => {
     onNavigate(page);
