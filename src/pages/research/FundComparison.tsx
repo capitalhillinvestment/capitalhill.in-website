@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { BarChart2, Plus, X, Star, TrendingUp, Download, Printer, Info, Layers } from 'lucide-react';
-import mutualFunds, { MutualFund, amcOptions, categoryOptions, riskColors } from '../../data/mutualFunds';
+import {
+  MutualFund,
+  amcOptions,
+  categoryOptions,
+  riskColors
+} from '../../data/mutualFunds';
 
 interface FundComparisonProps { onNavigate: (page: string) => void; }
 
@@ -20,13 +25,35 @@ export default function FundComparison({ onNavigate }: FundComparisonProps) {
   const [searchFund, setSearchFund] = useState('');
   const [filterAMC, setFilterAMC] = useState('');
   const [filterCategory, setFilterCategory] = useState('');
+  const [funds, setFunds] = useState<MutualFund[]>([]);
+  const [loading, setLoading] = useState(true);
+
+useEffect(() => {
+  fetch("/api/funds")
+    .then((res) => res.json())
+    .then((result) => {
+      if (result.success) {
+        setFunds(result.data);
+      }
+      setLoading(false);
+    })
+    .catch((err) => {
+      console.error(err);
+      setLoading(false);
+    });
+}, []);
+  const [funds, setFunds] =
+  useState<MutualFund[]>([]);
+
+  const [loading, setLoading] =
+  useState(true);
 
   const nav = (page: string) => {
     onNavigate(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const availableFunds = mutualFunds.filter(f => {
+    const availableFunds = funds.filter(f => {
     const notSelected = !selectedFunds.find(sf => sf.id === f.id);
     const matchSearch = searchFund === '' || f.name.toLowerCase().includes(searchFund.toLowerCase());
     const matchAMC = filterAMC === '' || f.amc === filterAMC;
@@ -87,6 +114,13 @@ export default function FundComparison({ onNavigate }: FundComparisonProps) {
       : values.reduce((minI, v, i, arr) => v < arr[minI] ? i : minI, 0);
   };
 
+  if (loading) {
+  return (
+    <div className="pt-24 text-center">
+      Loading Funds...
+    </div>
+  );
+}
   return (
     <div className="pt-16 min-h-screen bg-slate-50 print:bg-white">
       {/* Header */}
