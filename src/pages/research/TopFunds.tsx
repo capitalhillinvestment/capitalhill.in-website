@@ -23,8 +23,21 @@ export default function TopFunds({ onNavigate }: TopFundsProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('');
   const [funds, setFunds] = useState<MutualFund[]>([]);
   const [loading, setLoading] = useState(true);
-  useEffect(() => {
-  fetch("/api/top-funds")
+useEffect(() => {
+  let url = "/api/top-funds";
+
+  if (
+    grouping === "category" &&
+    selectedCategory
+  ) {
+    url += `?category=${encodeURIComponent(
+      selectedCategory
+    )}`;
+  }
+
+  setLoading(true);
+
+  fetch(url)
     .then((res) => res.json())
     .then((result) => {
       if (result.success) {
@@ -37,19 +50,24 @@ export default function TopFunds({ onNavigate }: TopFundsProps) {
       console.error(error);
       setLoading(false);
     });
-}, []);
 
+}, [grouping, selectedCategory]);
+  
    const nav = (page: string) => {
     onNavigate(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const topFunds = useMemo(() => {
+const topFunds = useMemo(() => {
   let filteredFunds = [...funds];
 
-  if (grouping === 'category' && selectedCategory) {
+  if (
+    grouping === "category" &&
+    selectedCategory
+  ) {
     filteredFunds = filteredFunds.filter(
-      f => f.category === selectedCategory
+      (f) =>
+        f.category === selectedCategory
     );
   }
 
@@ -59,33 +77,9 @@ export default function TopFunds({ onNavigate }: TopFundsProps) {
       a.returns[timeframe]
   );
 
-  if (grouping === 'all') {
-    return filteredFunds.slice(0, 10);
-  }
-
-  const categoryMap = new Map<
-    string,
-    MutualFund[]
-  >();
-
-  for (const fund of filteredFunds) {
-    const cat = fund.category;
-
-    if (!categoryMap.has(cat)) {
-      categoryMap.set(cat, []);
-    }
-
-    const catFunds =
-      categoryMap.get(cat)!;
-
-    if (catFunds.length < 3) {
-      catFunds.push(fund);
-    }
-  }
-
-  return Array.from(
-    categoryMap.entries()
-  ).flatMap(([_, funds]) => funds);
+  return grouping === "all"
+    ? filteredFunds.slice(0, 10)
+    : filteredFunds;
 
 }, [
   funds,
@@ -93,7 +87,6 @@ export default function TopFunds({ onNavigate }: TopFundsProps) {
   grouping,
   selectedCategory
 ]);
-  
 
   const timeframeLabels = {
     oneYear: '1 Year',
