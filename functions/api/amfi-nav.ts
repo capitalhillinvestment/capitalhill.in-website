@@ -32,11 +32,14 @@ export async function onRequestGet() {
       });
     }
 
-    return Response.json({
-      success: true,
-      count: navData.length,
-      data: navData.slice(0, 50),
-    });
+  return Response.json({
+  success: true,
+  totalLines: lines.length,
+  sampleLine: lines[6],
+  sampleParts: lines[6].split(";"),
+  count: navData.length,
+  data: navData.slice(0, 3),
+});
 
   } catch (err: any) {
     return Response.json(
