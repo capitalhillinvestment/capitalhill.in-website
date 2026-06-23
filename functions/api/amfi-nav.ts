@@ -10,26 +10,32 @@ export async function onRequestGet() {
 
 return Response.json({
   success: true,
-  totalLines: lines.length,
-  first20Lines: lines.slice(0, 20),
+  count: navData.length,
+  data: navData.slice(0, 50),
 });
+   const navData = [];
 
-    const navData = [];
+for (const line of lines) {
+  const cleanLine = line.trim();
 
-    for (const line of lines) {
-      const parts = line.split(";");
+  if (!cleanLine.includes(";")) continue;
 
-      // AMFI format check
-      if (parts.length > 5 && parts[3] && parts[4]) {
-        navData.push({
-          schemeCode: parts[0],
-          isin: parts[1],
-          schemeName: parts[3],
-          nav: parseFloat(parts[4]),
-          date: parts[5],
-        });
-      }
-    }
+  const parts = cleanLine.split(";");
+
+  if (parts.length < 6) continue;
+
+  const nav = Number(parts[4]);
+
+  if (isNaN(nav)) continue;
+
+  navData.push({
+    schemeCode: parts[0],
+    isin: parts[1],
+    schemeName: parts[3],
+    nav,
+    date: parts[5],
+  });
+}
 
     return Response.json({
       success: true,
