@@ -1,5 +1,5 @@
 import { mutualFunds } from "../data/mutualFunds";
-import { calculateFundScore } from "../../src/engine/calculateFundScore";
+import { calculateFundScore } from "../engine/calculateFundScore";
 
 export async function onRequestGet() {
   const scored = mutualFunds.map((fund) => ({
