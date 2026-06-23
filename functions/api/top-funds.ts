@@ -1,17 +1,33 @@
 import { mutualFunds } from "../data/mutualFunds";
+import { calculateFundScore } from "../engine/calculateFundScore";
 
-export async function onRequestGet() {
+export async function onRequestGet({ request }: any) {
+  const url = new URL(request.url);
 
-  const topFunds = [...mutualFunds]
-    .sort(
-      (a, b) =>
-        b.returns.threeYear - a.returns.threeYear
-    )
+  const category = url.searchParams.get("category");
+
+  let funds = [...mutualFunds];
+
+  if (category) {
+    funds = funds.filter(
+      (f) =>
+        f.category.toLowerCase() ===
+        category.toLowerCase()
+    );
+  }
+
+  const ranked = funds
+    .map((fund) => ({
+      ...fund,
+      score: calculateFundScore(fund),
+    }))
+    .sort((a, b) => b.score - a.score)
     .slice(0, 10);
 
   return Response.json({
     success: true,
-    count: topFunds.length,
-    data: topFunds,
+    category,
+    count: ranked.length,
+    data: ranked,
   });
 }
