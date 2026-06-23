@@ -20,8 +20,6 @@ function StarRating({ rating }: { rating: number }) {
 }
 
 export default function FundComparison({ onNavigate }: FundComparisonProps) {
-  const [selectedFunds, setSelectedFunds] = useState<MutualFund[]>([]);
-  const [showFundPicker, setShowFundPicker] = useState(false);
   const [searchFund, setSearchFund] = useState('');
   const [filterAMC, setFilterAMC] = useState('');
   const [filterCategory, setFilterCategory] = useState('');
