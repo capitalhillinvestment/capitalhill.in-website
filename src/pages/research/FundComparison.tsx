@@ -25,7 +25,8 @@ export default function FundComparison({ onNavigate }: FundComparisonProps) {
   const [filterCategory, setFilterCategory] = useState('');
   const [funds, setFunds] = useState<MutualFund[]>([]);
   const [loading, setLoading] = useState(true);
-
+const [selectedFunds, setSelectedFunds] = useState<MutualFund[]>([]);
+  
 useEffect(() => {
   fetch("/api/funds")
     .then((res) => res.json())
