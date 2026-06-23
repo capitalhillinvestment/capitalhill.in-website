@@ -8,39 +8,34 @@ export async function onRequestGet() {
 
     const lines = text.split("\n");
 
-return Response.json({
-  success: true,
-  count: navData.length,
-  data: navData.slice(0, 50),
-});
-   const navData = [];
+    const navData = [];
 
-for (const line of lines) {
-  const cleanLine = line.trim();
+    for (const line of lines) {
+      const cleanLine = line.trim();
 
-  if (!cleanLine.includes(";")) continue;
+      if (!cleanLine.includes(";")) continue;
 
-  const parts = cleanLine.split(";");
+      const parts = cleanLine.split(";");
 
-  if (parts.length < 6) continue;
+      if (parts.length < 6) continue;
 
-  const nav = Number(parts[4]);
+      const nav = Number(parts[4]);
 
-  if (isNaN(nav)) continue;
+      if (isNaN(nav)) continue;
 
-  navData.push({
-    schemeCode: parts[0],
-    isin: parts[1],
-    schemeName: parts[3],
-    nav,
-    date: parts[5],
-  });
-}
+      navData.push({
+        schemeCode: parts[0],
+        isin: parts[1],
+        schemeName: parts[3],
+        nav,
+        date: parts[5],
+      });
+    }
 
     return Response.json({
       success: true,
       count: navData.length,
-      data: navData.slice(0, 50), // limit for now
+      data: navData.slice(0, 50),
     });
 
   } catch (err: any) {
