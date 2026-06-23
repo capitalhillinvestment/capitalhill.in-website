@@ -8,6 +8,12 @@ export async function onRequestGet() {
 
     const lines = text.split("\n");
 
+return Response.json({
+  success: true,
+  totalLines: lines.length,
+  first20Lines: lines.slice(0, 20),
+});
+
     const navData = [];
 
     for (const line of lines) {
