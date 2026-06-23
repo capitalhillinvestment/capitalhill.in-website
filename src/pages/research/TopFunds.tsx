@@ -40,9 +40,9 @@ useEffect(() => {
   fetch(url)
     .then((res) => res.json())
     .then((result) => {
-      if (result.success) {
-        setFunds(result.data);
-      }
+    if (result.success) {
+  setFunds(result.topOverall);
+}
 
       setLoading(false);
     })
