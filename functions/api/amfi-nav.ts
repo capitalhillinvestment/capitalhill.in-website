@@ -1,8 +1,19 @@
 export async function onRequestGet() {
   try {
     const res = await fetch(
-      "https://www.amfiindia.com/spages/NAVAll.txt"
+      "https://portal.amfiindia.com/spages/NAVAll.txt",
+      {
+        headers: {
+          "User-Agent": "Mozilla/5.0",
+        },
+      }
     );
+
+    if (!res.ok) {
+      throw new Error(
+        `AMFI request failed: ${res.status} ${res.statusText}`
+      );
+    }
 
     const text = await res.text();
 
@@ -13,20 +24,16 @@ export async function onRequestGet() {
     for (const line of lines) {
       const cleanLine = line.trim();
 
-      // Skip empty lines
       if (!cleanLine) continue;
 
-      // Skip non-data lines
       if (!cleanLine.includes(";")) continue;
 
       const parts = cleanLine.split(";");
 
-      // AMFI NAV records should have at least 6 columns
       if (parts.length < 6) continue;
 
       const nav = Number(parts[4]);
 
-      // Skip headers and invalid NAV rows
       if (isNaN(nav)) continue;
 
       navData.push({
@@ -40,14 +47,8 @@ export async function onRequestGet() {
 
     return Response.json({
       success: true,
-
-      // Debug information
-      totalLines: lines.length,
-      first10Lines: lines.slice(0, 10),
-
-      // Parsed data
       count: navData.length,
-      data: navData.slice(0, 20),
+      data: navData.slice(0, 50),
     });
 
   } catch (err: any) {
@@ -56,7 +57,9 @@ export async function onRequestGet() {
         success: false,
         error: err?.message || "Unknown error",
       },
-      { status: 500 }
+      {
+        status: 500,
+      }
     );
   }
 }
