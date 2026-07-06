@@ -6,10 +6,10 @@
  * Returns the raw text exactly as received from AMFI.
  */
 
-const AMFI_URL = "https://www.amfiindia.com/spages/NAVAll.txt";
+import { ENDPOINTS } from "../../config/endpoints";
 
 export async function downloadAMFI(): Promise<string> {
-  const response = await fetch(AMFI_URL);
+  const response = await fetch(ENDPOINTS.AMFI_NAV);
 
   if (!response.ok) {
     throw new Error(
