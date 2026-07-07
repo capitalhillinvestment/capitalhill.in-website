@@ -1,4 +1,4 @@
-import { TrendingUp, Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Youtube } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin, Twitter, Facebook, Youtube } from 'lucide-react';
 import logo from '../assets/log.png';
 
 interface FooterProps { onNavigate: (page: string) => void; }

@@ -104,7 +104,7 @@ console.log("Funds loaded:", funds.length);
 console.log(funds);
   
 const filteredFunds = useMemo(() => {
-  return funds.filter((f) => {
+  const result = funds.filter((f) => {
     const searchText = search.toLowerCase();
 
     const matchSearch =
@@ -124,8 +124,7 @@ const filteredFunds = useMemo(() => {
     const matchRating =
       minRating === 0 || f.rating >= minRating;
 
-    const aumMax =
-      maxAUM === '' ? Infinity : Number(maxAUM);
+    const aumMax = Number(maxAUM);
 
     const matchAUM =
       f.aum >= Number(minAUM || 0) && f.aum <= aumMax;

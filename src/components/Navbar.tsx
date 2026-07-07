@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Menu, X, TrendingUp, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import logo from '../assets/log.png';
 
 type Page = string;
@@ -87,7 +87,6 @@ export default function Navbar({ currentPage, onNavigate }: NavbarProps) {
     { label: 'About Us', page: 'about' },
     { label: 'Why Invest?', page: 'why-invest' },
     { label: 'Investment Basics', page: 'investment-basics' },
-   ,
   ].map(item => (
     <button
       key={item.page}

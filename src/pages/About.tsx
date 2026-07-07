@@ -1,4 +1,4 @@
-import { Users, Award, Target, Heart, TrendingUp, CheckCircle } from 'lucide-react';
+import { Target, Heart, TrendingUp, CheckCircle } from 'lucide-react';
 
 interface AboutProps { onNavigate: (page: string) => void; }
 
