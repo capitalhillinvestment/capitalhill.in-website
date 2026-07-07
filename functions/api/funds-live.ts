@@ -21,10 +21,27 @@ export async function onRequestGet(context: any) {
     ).length;
 
     // TEMPORARY DEBUG: remove once matching is confirmed working.
-    // Shows a sample of AMFI's actual scheme name format alongside what
-    // our first few funds' names look like, so mismatches are visible.
-    const debugAmfiSample = amfiFunds.slice(0, 8).map((f) => f.schemeName);
-    const debugOurFunds = mutualFunds.slice(0, 5).map((f) => `${f.amc} | ${f.name}`);
+    // For the first 5 funds, search AMFI's raw data for anything
+    // containing that fund's AMC name, so we can see the real scheme
+    // name format AMFI uses for these specific houses/funds.
+    const debugRealNames = mutualFunds.slice(0, 5).map((fund) => {
+      const amcToken = fund.amc.split(" ")[0].toLowerCase();
+      const candidates = amfiFunds
+        .filter((a) => a.schemeName.toLowerCase().includes(amcToken))
+        .map((a) => a.schemeName)
+        .filter((name) => {
+          const lower = name.toLowerCase();
+          const nameWords = fund.name
+            .toLowerCase()
+            .replace(/fund/g, "")
+            .trim()
+            .split(" ")
+            .filter((w) => w.length > 3);
+          return nameWords.some((w) => lower.includes(w));
+        })
+        .slice(0, 5);
+      return { ourFund: `${fund.amc} | ${fund.name}`, realAmfiMatches: candidates };
+    });
 
     if (env?.CAPITAL_HILL_DATA) {
       await saveLatestFunds(env, updatedFunds);
@@ -41,8 +58,7 @@ export async function onRequestGet(context: any) {
       totalFunds: updatedFunds.length,
       totalAmfiRecords: amfiFunds.length,
       matchedFunds,
-      debugAmfiSample,
-      debugOurFunds,
+      debugRealNames,
       data: updatedFunds,
     });
   } catch (error: any) {
