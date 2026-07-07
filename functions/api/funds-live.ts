@@ -21,25 +21,26 @@ export async function onRequestGet(context: any) {
     ).length;
 
     // TEMPORARY DEBUG: remove once matching is confirmed working.
-    // For the first 5 funds, search AMFI's raw data for anything
-    // containing that fund's AMC name, so we can see the real scheme
-    // name format AMFI uses for these specific houses/funds.
+    // For the first 5 funds, search AMFI's raw data for schemes whose
+    // name contains ALL significant words from our fund name (not just
+    // the AMC name, which matched everything from that fund house).
     const debugRealNames = mutualFunds.slice(0, 5).map((fund) => {
       const amcToken = fund.amc.split(" ")[0].toLowerCase();
+      const stop = new Set(["fund", "the", "and"]);
+      const significantWords = fund.name
+        .toLowerCase()
+        .split(/[^a-z0-9]+/)
+        .filter((w) => w.length >= 2 && !stop.has(w));
+
       const candidates = amfiFunds
-        .filter((a) => a.schemeName.toLowerCase().includes(amcToken))
-        .map((a) => a.schemeName)
-        .filter((name) => {
-          const lower = name.toLowerCase();
-          const nameWords = fund.name
-            .toLowerCase()
-            .replace(/fund/g, "")
-            .trim()
-            .split(" ")
-            .filter((w) => w.length > 3);
-          return nameWords.some((w) => lower.includes(w));
+        .filter((a) => {
+          const lower = a.schemeName.toLowerCase();
+          if (!lower.includes(amcToken)) return false;
+          return significantWords.every((w) => lower.replace(/\s+/g, "").includes(w));
         })
+        .map((a) => a.schemeName)
         .slice(0, 5);
+
       return { ourFund: `${fund.amc} | ${fund.name}`, realAmfiMatches: candidates };
     });
 
