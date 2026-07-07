@@ -1,89 +1,75 @@
-import { mutualFunds } from "../data/mutualFunds";
-import { mapNavToFunds } from "../utils/mapNav";
 import { syncAMFI } from "../services/amfi/sync";
-import {
-  saveLatestFunds,
-  saveSyncStatus,
-  getLatestFunds,
-} from "../services/amfi/kv";
+import { saveLatestFunds, getLatestFunds } from "../services/amfi/kv";
+import type { AMFIFund } from "../services/amfi/types";
 
+/**
+ * Live AMFI fund data — returns real, current schemes straight from
+ * AMFI's daily NAV feed (not merged with the static research dataset,
+ * since fund names/categories drift out of date with reality over time
+ * and forcing a match onto stale names causes more harm than good).
+ *
+ * Supports:
+ *   ?q=<text>      case-insensitive search on scheme name
+ *   ?limit=<n>     default 50, max 200
+ *   ?offset=<n>    default 0
+ */
 export async function onRequestGet(context: any) {
   const env = context?.env;
+  const url = new URL(context.request.url);
+
+  const q = (url.searchParams.get("q") || "").trim().toLowerCase();
+  const limit = Math.min(
+    Math.max(Number(url.searchParams.get("limit")) || 50, 1),
+    200
+  );
+  const offset = Math.max(Number(url.searchParams.get("offset")) || 0, 0);
+
+  let amfiFunds: AMFIFund[];
+  let stale = false;
+  let fetchError: string | undefined;
 
   try {
-    const amfiFunds = await syncAMFI();
-
-    const updatedFunds = mapNavToFunds(mutualFunds, amfiFunds);
-
-    const matchedFunds = updatedFunds.filter(
-      (fund, i) =>
-        fund.nav !== mutualFunds[i].nav || fund.navDate !== mutualFunds[i].navDate
-    ).length;
-
-    // TEMPORARY DEBUG: remove once matching is confirmed working.
-    // For the first 5 funds, search AMFI's raw data for schemes whose
-    // name contains ALL significant words from our fund name (not just
-    // the AMC name, which matched everything from that fund house).
-    const debugRealNames = mutualFunds.slice(0, 5).map((fund) => {
-      const amcToken = fund.amc.split(" ")[0].toLowerCase();
-      const stop = new Set(["fund", "the", "and"]);
-      const significantWords = fund.name
-        .toLowerCase()
-        .split(/[^a-z0-9]+/)
-        .filter((w) => w.length >= 2 && !stop.has(w));
-
-      const candidates = amfiFunds
-        .filter((a) => {
-          const lower = a.schemeName.toLowerCase();
-          if (!lower.includes(amcToken)) return false;
-          return significantWords.every((w) => lower.replace(/\s+/g, "").includes(w));
-        })
-        .map((a) => a.schemeName)
-        .slice(0, 5);
-
-      return { ourFund: `${fund.amc} | ${fund.name}`, realAmfiMatches: candidates };
-    });
+    amfiFunds = await syncAMFI();
 
     if (env?.CAPITAL_HILL_DATA) {
-      await saveLatestFunds(env, updatedFunds);
-      await saveSyncStatus(env, {
-        totalFunds: updatedFunds.length,
-        latestNavDate: amfiFunds[0]?.date ?? "",
-        syncedAt: new Date().toISOString(),
-      });
+      await saveLatestFunds(env, amfiFunds);
     }
-
-    return Response.json({
-      success: true,
-      updatedAt: new Date().toISOString(),
-      totalFunds: updatedFunds.length,
-      totalAmfiRecords: amfiFunds.length,
-      matchedFunds,
-      debugRealNames,
-      data: updatedFunds,
-    });
   } catch (error: any) {
-    // AMFI is unreachable right now — fall back to the last good snapshot
-    // in KV rather than breaking the page.
+    fetchError = error?.message || "Failed to fetch AMFI NAV";
+
     if (env?.CAPITAL_HILL_DATA) {
       const cached = await getLatestFunds(env);
       if (cached && cached.length) {
-        return Response.json({
-          success: true,
-          stale: true,
-          error: error?.message || "Failed to fetch AMFI NAV",
-          totalFunds: cached.length,
-          data: cached,
-        });
+        amfiFunds = cached as AMFIFund[];
+        stale = true;
+      } else {
+        return Response.json(
+          { success: false, error: fetchError },
+          { status: 500 }
+        );
       }
+    } else {
+      return Response.json(
+        { success: false, error: fetchError },
+        { status: 500 }
+      );
     }
-
-    return Response.json(
-      {
-        success: false,
-        error: error?.message || "Failed to fetch AMFI NAV",
-      },
-      { status: 500 }
-    );
   }
+
+  const filtered = q
+    ? amfiFunds.filter((f) => f.schemeName.toLowerCase().includes(q))
+    : amfiFunds;
+
+  const page = filtered.slice(offset, offset + limit);
+
+  return Response.json({
+    success: true,
+    updatedAt: new Date().toISOString(),
+    ...(stale ? { stale: true, error: fetchError } : {}),
+    totalAmfiRecords: amfiFunds.length,
+    totalMatchingQuery: filtered.length,
+    limit,
+    offset,
+    data: page,
+  });
 }
