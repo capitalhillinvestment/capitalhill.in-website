@@ -1,5 +1,5 @@
 import WhatsAppButton from './components/WhatsAppButton';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -47,9 +47,41 @@ type Page =
   | 'terms-of-use'
   | 'disclaimer';
 
+const VALID_PAGES: Page[] = [
+  'home', 'about', 'why-invest', 'investment-basics', 'mutual-funds',
+  'pms', 'aif', 'ipo', 'nfo', 'research-mf', 'research-compare',
+  'research-screener', 'research-top', 'research-insights', 'research-live',
+  'calculators', 'contact', 'privacy-policy', 'terms-of-use', 'disclaimer',
+];
+
+function pageFromPath(pathname: string): Page {
+  const slug = pathname.replace(/^\/+|\/+$/g, ''); // strip leading/trailing slashes
+  if (!slug) return 'home';
+  return VALID_PAGES.includes(slug as Page) ? (slug as Page) : 'home';
+}
+
 function App() {
-  const [currentPage, setCurrentPage] = useState<Page>('home');
-  const navigate = (page: string) => setCurrentPage(page as Page);
+  const [currentPage, setCurrentPage] = useState<Page>(() =>
+    pageFromPath(window.location.pathname)
+  );
+
+  const navigate = (page: string) => {
+    const target = VALID_PAGES.includes(page as Page) ? (page as Page) : 'home';
+    const path = target === 'home' ? '/' : `/${target}`;
+    if (window.location.pathname !== path) {
+      window.history.pushState({ page: target }, '', path);
+    }
+    setCurrentPage(target);
+  };
+
+  // Handle browser back/forward buttons
+  useEffect(() => {
+    const onPopState = () => {
+      setCurrentPage(pageFromPath(window.location.pathname));
+    };
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
+  }, []);
 
   const renderPage = () => {
     switch (currentPage) {
