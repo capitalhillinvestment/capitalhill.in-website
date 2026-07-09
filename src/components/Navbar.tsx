@@ -19,6 +19,7 @@ const products = [
 
 const research = [
   { label: 'Mutual Fund Research', page: 'research-mf' },
+  { label: 'Live Fund Search', page: 'research-live' },
   { label: 'Fund Comparison', page: 'research-compare' },
   { label: 'Fund Screener', page: 'research-screener' },
   { label: 'Top Performing Funds', page: 'research-top' },

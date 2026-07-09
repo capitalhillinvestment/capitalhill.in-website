@@ -17,6 +17,7 @@ import {
   FundScreener,
   TopFunds,
   MarketInsights,
+  LiveFundSearch,
 } from './pages/research';
 import Calculators from './pages/Calculators';
 import Contact from './pages/Contact';
@@ -39,6 +40,7 @@ type Page =
   | 'research-screener'
   | 'research-top'
   | 'research-insights'
+  | 'research-live'
   | 'calculators'
   | 'contact'
   | 'privacy-policy'
@@ -66,6 +68,7 @@ function App() {
       case 'research-screener': return <FundScreener onNavigate={navigate} />;
       case 'research-top': return <TopFunds onNavigate={navigate} />;
       case 'research-insights': return <MarketInsights onNavigate={navigate} />;
+      case 'research-live': return <LiveFundSearch onNavigate={navigate} />;
       case 'calculators': return <Calculators onNavigate={navigate} />;
       case 'contact': return <Contact onNavigate={navigate} />;
         case 'privacy-policy':
